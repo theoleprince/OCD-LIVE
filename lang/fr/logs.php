@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'auth.login' => 'Connexion',
+    'auth.logout' => 'Déconnexion',
+    'booking.updated' => 'Notes internes modifiées',
+    'booking.confirmed' => 'Réservation confirmée',
+    'booking.cancelled' => 'Réservation annulée',
+    'booking.completed' => 'Réservation terminée',
+    'payment.recorded' => 'Paiement enregistré',
+    'payment.failed' => 'Paiement échoué',
+    'payment.refunded' => 'Paiement remboursé',
+    'package.created' => 'Package créé',
+    'package.updated' => 'Package modifié',
+    'package.activated' => 'Package activé',
+    'package.deactivated' => 'Package désactivé',
+    'package.deleted' => 'Package archivé',
+    'package.restored' => 'Package restauré',
+    'calendar.day_updated' => 'Journée du calendrier modifiée',
+    'calendar.block_created' => 'Créneau bloqué',
+    'calendar.block_deleted' => 'Blocage supprimé',
+    'settings.updated' => 'Paramètres modifiés',
+    'customers.exported' => 'Export des clients',
+    'bookings.expired' => 'Réservation expirée (non payée)',
+];
