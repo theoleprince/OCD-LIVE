@@ -20,7 +20,7 @@
         <div class="space-y-4 lg:col-span-2">
             @foreach ($customer->businesses as $biz)
                 <section class="card p-5 sm:p-6">
-                    <p class="text-xs font-semibold uppercase tracking-wider text-gold-600">{{ $biz->sector }}</p>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-brand-600">{{ $biz->sector }}</p>
                     <h2 class="mt-1 font-display text-xl text-ink">{{ $biz->name }}</h2>
                     <p class="mt-3 whitespace-pre-line text-sm text-neutral-600">{{ $biz->description }}</p>
                     <p class="mt-3 text-sm"><span class="text-neutral-500">Coordonnées commerciales :</span> {{ $biz->business_phone }} · {{ $biz->business_address }}</p>
@@ -43,7 +43,7 @@
                         <tbody>
                             @forelse ($customer->bookings as $b)
                                 <tr class="hover:bg-neutral-50">
-                                    <td><a href="{{ route('admin.bookings.show', $b) }}" class="font-mono font-semibold hover:text-gold-700">{{ $b->reference }}</a></td>
+                                    <td><a href="{{ route('admin.bookings.show', $b) }}" class="font-mono font-semibold hover:text-brand-700">{{ $b->reference }}</a></td>
                                     <td>{{ $b->starts_at->format('d/m/Y H:i') }}</td>
                                     <td>{{ $b->package->name }}</td>
                                     <td>{{ $b->mode->shortLabel() }}</td>

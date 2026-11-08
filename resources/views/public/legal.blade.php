@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('title', $title)
-@section('description', $title.' de la plateforme OCD Live — House of Challenge.')
+@section('description', $title.' de la plateforme OCD Live — OCD, Les Opportunités C\'est Dehors.')
 
 @section('content')
     <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">

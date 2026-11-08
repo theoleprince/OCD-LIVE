@@ -9,11 +9,11 @@
 @section('content')
     <div class="space-y-3">
         @forelse ($notifications as $n)
-            <article class="card p-5 {{ $n->read_at ? '' : 'border-gold-400 ring-1 ring-gold-400/30' }}">
+            <article class="card p-5 {{ $n->read_at ? '' : 'border-brand-400 ring-1 ring-brand-400/30' }}">
                 <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div class="min-w-0">
                         <p class="flex items-center gap-2 font-semibold text-ink">
-                            @unless ($n->read_at)<span class="h-2 w-2 rounded-full bg-gold-500"></span>@endunless
+                            @unless ($n->read_at)<span class="h-2 w-2 rounded-full bg-brand-500"></span>@endunless
                             {{ $n->data['title'] ?? 'Notification' }}
                         </p>
                         <p class="text-xs text-neutral-500">{{ $n->created_at->locale('fr')->diffForHumans() }} · {{ $n->created_at->format('d/m/Y H:i') }}</p>

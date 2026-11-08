@@ -44,6 +44,6 @@ class BookingConfirmedNotification extends Notification
             $mail->line('Notre assistante basée à Lomé vous contactera sur WhatsApp pour préparer la connexion et faire un test technique avant l\'émission.');
         }
 
-        return $mail->salutation('L\'équipe OCD Live — House of Challenge');
+        return $mail->salutation('L\'équipe OCD Live');
     }
 }

@@ -8,7 +8,7 @@
     <title>@yield('title', 'Tableau de bord') · Admin OCD LIVE</title>
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=playfair-display:500,600,700|inter:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
@@ -30,16 +30,16 @@
     @endphp
 
     {{-- Barre latérale --}}
-    <aside :class="nav ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-40 flex w-64 flex-col bg-ink text-neutral-300 transition-transform duration-300 lg:translate-x-0">
+    <aside :class="nav ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-40 flex w-64 flex-col bg-navy text-slate-300 transition-transform duration-300 lg:translate-x-0">
         <div class="flex h-16 items-center px-5"><a href="{{ route('admin.dashboard') }}"><x-logo dark /></a></div>
         <nav class="flex-1 space-y-1 overflow-y-auto px-3 py-4" aria-label="Administration">
             @foreach ($links as [$route, $label, $icon, $pattern])
                 @php($active = request()->routeIs($pattern))
                 <a href="{{ route($route) }}" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition {{ $active ? 'bg-white/10 font-semibold text-white' : 'hover:bg-white/5 hover:text-white' }}">
-                    <x-icon :name="$icon" class="h-5 w-5 {{ $active ? 'text-gold-400' : '' }}" />
+                    <x-icon :name="$icon" class="h-5 w-5 {{ $active ? 'text-brand-300' : '' }}" />
                     <span class="flex-1">{{ $label }}</span>
                     @if ($route === 'admin.notifications.index' && $unread)
-                        <span class="rounded-full bg-gold-500 px-2 py-0.5 text-[10px] font-bold text-ink">{{ $unread }}</span>
+                        <span class="rounded-full bg-brand-500 px-2 py-0.5 text-[10px] font-bold text-ink">{{ $unread }}</span>
                     @endif
                 </a>
             @endforeach
@@ -48,9 +48,9 @@
             <p class="truncate text-sm font-medium text-white">{{ $user->name }}</p>
             <p class="text-xs text-neutral-500">{{ $user->role->label() }}</p>
             <div class="mt-3 flex items-center justify-between">
-                <a href="{{ route('home') }}" target="_blank" class="text-xs hover:text-gold-300">Voir le site ↗</a>
+                <a href="{{ route('home') }}" target="_blank" class="text-xs hover:text-brand-300">Voir le site ↗</a>
                 <form method="POST" action="{{ route('logout') }}">@csrf
-                    <button class="inline-flex items-center gap-1.5 text-xs hover:text-gold-300"><x-icon name="logout" class="h-4 w-4" />Déconnexion</button>
+                    <button class="inline-flex items-center gap-1.5 text-xs hover:text-brand-300"><x-icon name="logout" class="h-4 w-4" />Déconnexion</button>
                 </form>
             </div>
         </div>

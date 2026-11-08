@@ -24,7 +24,7 @@
                 <p class="mt-3 font-display text-2xl text-ink">{{ $p->formatted_price }}</p>
                 <p class="mt-1 text-xs {{ $p->price_validated ? 'text-emerald-700' : 'text-amber-700' }}">{{ $p->price_validated ? 'Tarif validé' : 'Tarif proposé — à valider' }}</p>
                 <ul class="mt-4 flex-1 space-y-1 text-sm text-neutral-600">
-                    @foreach ($p->features ?? [] as $f)<li class="flex gap-2"><x-icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-gold-500" />{{ $f }}</li>@endforeach
+                    @foreach ($p->features ?? [] as $f)<li class="flex gap-2"><x-icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />{{ $f }}</li>@endforeach
                 </ul>
                 <p class="mt-4 text-xs text-neutral-500">{{ $p->bookings_count }} réservation(s)</p>
                 <div class="mt-4 flex flex-wrap gap-2 border-t border-neutral-100 pt-4">

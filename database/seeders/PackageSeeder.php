@@ -31,7 +31,7 @@ class PackageSeeder extends Seeder
                 'max_products' => 3,
                 'features' => [
                     'Présentation du produit ou service',
-                    'Diffusion sur le compte House of Challenge',
+                    'Diffusion en direct sur le compte TikTok House of Challenge',
                     'Affichage du numéro de téléphone',
                     'Présentation de l\'adresse commerciale',
                     'Accompagnement technique',

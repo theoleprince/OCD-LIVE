@@ -2,7 +2,7 @@
 @php($id = 'f-'.str_replace('.', '-', $model))
 <div>
     <label for="{{ $id }}" class="mb-1.5 block text-sm font-medium text-neutral-700">
-        {{ $label }} @if ($required)<span class="text-gold-600">*</span>@endif
+        {{ $label }} @if ($required)<span class="text-brand-600">*</span>@endif
     </label>
     <select id="{{ $id }}" {{ $live ? 'wire:model.live' : 'wire:model' }}="{{ $model }}" {{ $attributes->merge(['class' => 'field w-full']) }}>
         {{ $slot }}

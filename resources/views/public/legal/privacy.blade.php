@@ -1,5 +1,5 @@
 <h2>1. Responsable du traitement</h2>
-<p>Les données collectées sur ce site sont traitées par House of Challenge, éditeur d'OCD Live, {{ setting('contact_address') }}.</p>
+<p>Les données collectées sur ce site sont traitées par OCD (Les Opportunités C'est Dehors), éditeur d'OCD Live, {{ setting('contact_address') }}.</p>
 
 <h2>2. Données collectées</h2>
 <p>Lors d'une réservation, nous collectons : nom, prénom, pays, ville, fuseau horaire, téléphone, numéro WhatsApp, adresse e-mail ; les informations commerciales de votre activité (nom, secteur, description, coordonnées commerciales, réseaux sociaux, produits, logo et photos) ; les informations techniques de participation à distance (type de connexion, besoin d'assistance) ; l'adresse IP utilisée lors de la demande, à des fins de sécurité.</p>

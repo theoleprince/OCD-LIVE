@@ -28,7 +28,7 @@ enum BookingStatus: string
             self::PendingReview => 'bg-sky-50 text-sky-800 ring-sky-200',
             self::Confirmed => 'bg-emerald-50 text-emerald-800 ring-emerald-200',
             self::Cancelled => 'bg-neutral-100 text-neutral-500 ring-neutral-200',
-            self::Completed => 'bg-neutral-900 text-gold-300 ring-neutral-900',
+            self::Completed => 'bg-slate-800 text-white ring-slate-800',
         };
     }
 

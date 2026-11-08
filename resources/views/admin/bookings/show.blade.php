@@ -33,7 +33,7 @@
                     <form method="POST" action="{{ route('admin.bookings.complete', $booking) }}">@csrf<button class="btn-primary btn-sm">Marquer terminée</button></form>
                 @else
                     <form method="POST" action="{{ route('admin.bookings.confirm', $booking) }}">@csrf
-                        <button class="btn-gold btn-sm" @disabled(! $paid) title="{{ $paid ? '' : 'Enregistrez d\'abord le paiement' }}">Confirmer la réservation</button>
+                        <button class="btn-accent btn-sm" @disabled(! $paid) title="{{ $paid ? '' : 'Enregistrez d\'abord le paiement' }}">Confirmer la réservation</button>
                     </form>
                 @endif
                 <form method="POST" action="{{ route('admin.bookings.cancel', $booking) }}" x-data onsubmit="const r = prompt('Motif de l\'annulation (facultatif) :'); if (r === null) return false; this.reason.value = r;">
@@ -52,7 +52,7 @@
             <section class="card p-5 sm:p-6">
                 <div class="flex items-center justify-between">
                     <h2 class="font-semibold text-ink">Client</h2>
-                    <a href="{{ route('admin.customers.show', $c) }}" class="text-sm text-gold-700 hover:text-ink">Fiche client →</a>
+                    <a href="{{ route('admin.customers.show', $c) }}" class="text-sm text-brand-700 hover:text-ink">Fiche client →</a>
                 </div>
                 <dl class="mt-4 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
                     <div><dt class="text-neutral-500">Nom</dt><dd class="font-medium text-ink">{{ $c->full_name }}</dd></div>
@@ -66,7 +66,7 @@
             {{-- Distance --}}
             <section class="card p-5 sm:p-6">
                 <h2 class="flex items-center gap-2 font-semibold text-ink">
-                    <x-icon :name="$booking->mode->value === 'REMOTE' ? 'globe' : 'studio'" class="h-5 w-5 text-gold-600" />{{ $booking->mode->label() }}
+                    <x-icon :name="$booking->mode->value === 'REMOTE' ? 'globe' : 'studio'" class="h-5 w-5 text-brand-600" />{{ $booking->mode->label() }}
                 </h2>
                 @if ($booking->mode->value === 'REMOTE')
                     <dl class="mt-4 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
@@ -104,7 +104,7 @@
                 @endif
 
                 @if ($biz->is_food)
-                    <div class="mt-5 rounded-xl bg-gold-50 p-4 text-sm">
+                    <div class="mt-5 rounded-xl bg-brand-50 p-4 text-sm">
                         <p class="font-semibold text-ink">Produits alimentaires</p>
                         <p class="mt-2"><span class="text-neutral-500">Préparation :</span> {{ $biz->food_preparation ?: '—' }}</p>
                         <p class="mt-1"><span class="text-neutral-500">Conservation :</span> {{ $biz->food_conservation ?: '—' }}</p>
@@ -117,7 +117,7 @@
                     <div class="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-5">
                         @foreach ($booking->attachments as $file)
                             <a href="{{ route('admin.bookings.attachment', [$booking, $file]) }}" target="_blank" class="group block">
-                                <img src="{{ route('admin.bookings.attachment', [$booking, $file]) }}" alt="{{ $file->original_name }}" loading="lazy" class="aspect-square w-full rounded-xl border border-neutral-200 object-cover group-hover:border-gold-500">
+                                <img src="{{ route('admin.bookings.attachment', [$booking, $file]) }}" alt="{{ $file->original_name }}" loading="lazy" class="aspect-square w-full rounded-xl border border-neutral-200 object-cover group-hover:border-brand-500">
                                 <span class="mt-1 block truncate text-[11px] text-neutral-500">{{ $file->type === 'logo' ? 'Logo' : 'Photo' }}</span>
                             </a>
                         @endforeach
@@ -136,7 +136,7 @@
         <div class="space-y-4">
             {{-- Paiements --}}
             <section class="card p-5 sm:p-6">
-                <h2 class="flex items-center gap-2 font-semibold text-ink"><x-icon name="wallet" class="h-5 w-5 text-gold-600" />Paiements</h2>
+                <h2 class="flex items-center gap-2 font-semibold text-ink"><x-icon name="wallet" class="h-5 w-5 text-brand-600" />Paiements</h2>
                 <ul class="mt-4 space-y-3">
                     @foreach ($booking->payments as $payment)
                         <li class="rounded-xl border border-neutral-100 p-3 text-sm">

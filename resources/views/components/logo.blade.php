@@ -1,11 +1,14 @@
 @props(['dark' => false])
-<span {{ $attributes->merge(['class' => 'inline-flex items-center gap-2.5']) }}>
-    <span class="relative grid h-9 w-9 place-items-center rounded-full border {{ $dark ? 'border-gold-400/60' : 'border-ink' }}">
-        <span class="font-display text-[13px] font-bold tracking-tight {{ $dark ? 'text-white' : 'text-ink' }}">O</span>
-        <span class="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-gold-500 ring-2 {{ $dark ? 'ring-ink' : 'ring-white' }} animate-pulse-soft"></span>
+<span {{ $attributes->merge(['class' => 'inline-flex items-center gap-3']) }}>
+    {{-- Monogramme OCD + onglet LIVE --}}
+    <span class="relative inline-flex h-11 items-center rounded-xl bg-gradient-to-br from-brand-500 via-brand-600 to-accent-500 px-2.5 shadow-lg shadow-brand-600/30">
+        <span class="font-display text-[17px] leading-none tracking-tight text-white">OCD</span>
+        <span class="absolute -bottom-2 -right-2 inline-flex items-center gap-1 rounded-md bg-accent-500 px-1.5 py-0.5 text-[9px] font-extrabold tracking-wider text-white ring-2 {{ $dark ? 'ring-navy' : 'ring-white' }}">
+            <span class="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse-soft"></span>LIVE
+        </span>
     </span>
     <span class="leading-none">
-        <span class="block font-display text-lg font-bold tracking-[0.08em] {{ $dark ? 'text-white' : 'text-ink' }}">OCD <span class="text-gold-500">LIVE</span></span>
-        <span class="block text-[9px] font-medium uppercase tracking-[0.28em] {{ $dark ? 'text-neutral-400' : 'text-neutral-500' }}">House of Challenge</span>
+        <span class="block font-display text-lg {{ $dark ? 'text-white' : 'text-ink' }}">OCD <span class="text-brand-600 {{ $dark ? '!text-brand-300' : '' }}">Live</span></span>
+        <span class="mt-1 block text-[10px] font-semibold uppercase tracking-[0.12em] {{ $dark ? 'text-slate-400' : 'text-slate-500' }}">Les Opportunités C'est Dehors</span>
     </span>
 </span>

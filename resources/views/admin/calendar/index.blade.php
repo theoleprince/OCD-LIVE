@@ -28,13 +28,13 @@
                         @class([
                             'flex min-h-[4.5rem] flex-col rounded-xl border p-1.5 text-left text-xs transition sm:min-h-[6rem] sm:p-2',
                             'opacity-40' => ! $day['in_month'],
-                            'border-ink ring-2 ring-gold-500/40' => $isSelected,
-                            'border-neutral-200 bg-white hover:border-gold-400' => ! $isSelected && $day['config']['open'],
+                            'border-ink ring-2 ring-brand-500/40' => $isSelected,
+                            'border-neutral-200 bg-white hover:border-brand-400' => ! $isSelected && $day['config']['open'],
                             'border-neutral-100 bg-neutral-100 text-neutral-400' => ! $isSelected && ! $day['config']['open'],
                         ])>
                         <span class="flex items-center justify-between">
-                            <span class="font-semibold {{ $day['date']->isToday() ? 'rounded bg-gold-500 px-1 text-ink' : '' }}">{{ $day['date']->day }}</span>
-                            @if ($day['config']['overridden'])<span class="h-1.5 w-1.5 rounded-full bg-gold-500" title="Réglage spécifique"></span>@endif
+                            <span class="font-semibold {{ $day['date']->isToday() ? 'rounded bg-brand-500 px-1 text-ink' : '' }}">{{ $day['date']->day }}</span>
+                            @if ($day['config']['overridden'])<span class="h-1.5 w-1.5 rounded-full bg-brand-500" title="Réglage spécifique"></span>@endif
                         </span>
                         @if (! $day['config']['open'])
                             <span class="mt-auto hidden text-[10px] sm:block">Fermé</span>
@@ -51,9 +51,9 @@
                 <span class="flex items-center gap-1.5"><span class="h-3 w-3 rounded bg-emerald-100"></span>Confirmée</span>
                 <span class="flex items-center gap-1.5"><span class="h-3 w-3 rounded bg-amber-100"></span>En attente</span>
                 <span class="flex items-center gap-1.5"><span class="h-3 w-3 rounded bg-neutral-800"></span>Blocage</span>
-                <span class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-gold-500"></span>Réglage spécifique</span>
+                <span class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-brand-500"></span>Réglage spécifique</span>
                 @if (auth()->user()->isAdmin())
-                    <a href="{{ route('admin.settings.edit') }}" class="ml-auto text-gold-700 hover:text-ink">Horaires hebdomadaires →</a>
+                    <a href="{{ route('admin.settings.edit') }}" class="ml-auto text-brand-700 hover:text-ink">Horaires hebdomadaires →</a>
                 @endif
             </div>
         </section>
@@ -115,7 +115,7 @@
                     <h3 class="font-semibold text-ink">Réservations du jour</h3>
                     <ul class="mt-3 space-y-2">
                         @forelse ($selected['bookings'] as $b)
-                            <li><a href="{{ route('admin.bookings.show', $b) }}" class="flex items-center justify-between gap-2 rounded-lg border border-neutral-100 px-3 py-2 text-sm hover:border-gold-400">
+                            <li><a href="{{ route('admin.bookings.show', $b) }}" class="flex items-center justify-between gap-2 rounded-lg border border-neutral-100 px-3 py-2 text-sm hover:border-brand-400">
                                 <span><strong>{{ $b->time_range }}</strong> · {{ $b->business->name }}<br><span class="text-xs text-neutral-500">{{ $b->package->name }} · {{ $b->mode->shortLabel() }}</span></span>
                                 <span class="badge {{ $b->status->badgeClasses() }}">{{ $b->status->label() }}</span>
                             </a></li>

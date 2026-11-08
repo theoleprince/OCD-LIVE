@@ -1,8 +1,8 @@
 <h2>1. Objet</h2>
-<p>Les présentes conditions générales encadrent la réservation des émissions commerciales en direct proposées par OCD Live, service de House of Challenge, dont le studio est situé à Lomé (Togo).</p>
+<p>Les présentes conditions générales encadrent la réservation des émissions commerciales en direct proposées par OCD Live, service de l'entreprise OCD (Les Opportunités C'est Dehors), dont le studio est situé à Lomé (Togo).</p>
 
 <h2>2. Nature du service</h2>
-<p>OCD Live offre un service de visibilité : présentation de produits ou services, de coordonnées et d'adresses commerciales lors d'émissions diffusées sur les réseaux sociaux de House of Challenge. OCD Live ne garantit aucun volume de ventes, d'audience ou de chiffre d'affaires.</p>
+<p>OCD Live offre un service de visibilité : présentation de produits ou services, de coordonnées et d'adresses commerciales lors d'émissions diffusées en direct sur le compte TikTok House of Challenge, utilisé par OCD Live comme compte de diffusion. OCD Live ne garantit aucun volume de ventes, d'audience ou de chiffre d'affaires.</p>
 
 <h2>3. Réservation</h2>
 <p>La demande de réservation est effectuée en ligne. Le créneau choisi est bloqué provisoirement pendant {{ setting('payment_hold_hours') }} heures dans l'attente du paiement. Passé ce délai sans paiement, OCD Live peut libérer le créneau.</p>
@@ -24,4 +24,4 @@
 <p>Les annonces ou interventions de {{ config('ocd.host') }} prévues dans certains packages sont proposées sous réserve de disponibilité et selon les conditions contractuelles convenues.</p>
 
 <h2>9. Contact</h2>
-<p>OCD Live — House of Challenge, {{ setting('contact_address') }} · {{ setting('contact_email') }} · {{ setting('contact_phone') }}.</p>
+<p>OCD Live — OCD (Les Opportunités C'est Dehors), {{ setting('contact_address') }} · {{ setting('contact_email') }} · {{ setting('contact_phone') }}.</p>

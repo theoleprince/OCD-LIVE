@@ -2,11 +2,11 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "house-of-challenge/ocd-live",
     "type": "project",
-    "description": "OCD LIVE — plateforme de présentation commerciale en direct (House of Challenge).",
+    "description": "OCD LIVE — plateforme de présentation commerciale en direct (OCD — Les Opportunités C'est Dehors).",
     "keywords": ["ocd-live", "laravel", "livewire"],
     "license": "proprietary",
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "ext-fileinfo": "*",
         "ext-mbstring": "*",
         "ext-pdo_mysql": "*",

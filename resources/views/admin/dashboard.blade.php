@@ -16,10 +16,10 @@
             ['En attente', $stats['pending'], 'clock', route('admin.bookings.index', ['status' => 'PENDING_PAYMENT'])],
             ['Confirmées', $stats['confirmed'], 'check', route('admin.bookings.index', ['status' => 'CONFIRMED'])],
         ] as [$label, $value, $icon, $href])
-            <a href="{{ $href }}" class="card p-5 transition hover:border-gold-400">
+            <a href="{{ $href }}" class="card p-5 transition hover:border-brand-400">
                 <div class="flex items-center justify-between text-neutral-500">
                     <span class="text-xs font-semibold uppercase tracking-wider">{{ $label }}</span>
-                    <x-icon :name="$icon" class="h-5 w-5 text-gold-600" />
+                    <x-icon :name="$icon" class="h-5 w-5 text-brand-600" />
                 </div>
                 <p class="mt-3 font-display text-3xl text-ink">{{ number_format($value, 0, ',', ' ') }}</p>
             </a>
@@ -27,10 +27,10 @@
     </div>
 
     <div class="mt-4 grid gap-4 lg:grid-cols-3">
-        <div class="rounded-2xl bg-ink p-6 text-white">
-            <p class="text-xs font-semibold uppercase tracking-wider text-neutral-400">Revenus réellement encaissés</p>
-            <p class="mt-3 font-display text-3xl text-gold-300" data-testid="revenue">{{ money_fcfa($stats['revenue']) }}</p>
-            <p class="mt-2 text-xs text-neutral-400">Somme des paiements au statut « Payé » (hors démo).</p>
+        <div class="rounded-2xl bg-gradient-to-br from-brand-600 to-brand-800 p-6 text-white">
+            <p class="text-xs font-semibold uppercase tracking-wider text-brand-100">Revenus réellement encaissés</p>
+            <p class="mt-3 font-display text-3xl text-white" data-testid="revenue">{{ money_fcfa($stats['revenue']) }}</p>
+            <p class="mt-2 text-xs text-brand-100">Somme des paiements au statut « Payé » (hors démo).</p>
         </div>
         <div class="card p-6">
             <p class="text-xs font-semibold uppercase tracking-wider text-neutral-500">Clients</p>
@@ -56,7 +56,7 @@
                 @foreach ($byPackage as $p)
                     <li>
                         <div class="flex justify-between text-sm"><span>{{ $p->name }} @if ($p->trashed())<span class="text-xs text-neutral-400">(archivé)</span>@endif</span><strong>{{ $p->bookings_count }}</strong></div>
-                        <div class="mt-1.5 h-2 rounded-full bg-neutral-100"><div class="h-2 rounded-full bg-gold-500" style="width: {{ round($p->bookings_count / $max * 100) }}%"></div></div>
+                        <div class="mt-1.5 h-2 rounded-full bg-neutral-100"><div class="h-2 rounded-full bg-brand-500" style="width: {{ round($p->bookings_count / $max * 100) }}%"></div></div>
                     </li>
                 @endforeach
             </ul>
@@ -65,7 +65,7 @@
         <section class="card overflow-hidden lg:col-span-3">
             <div class="flex items-center justify-between p-6 pb-4">
                 <h2 class="font-semibold text-ink">Prochaines émissions</h2>
-                <a href="{{ route('admin.calendar') }}" class="text-sm font-medium text-gold-700 hover:text-ink">Calendrier →</a>
+                <a href="{{ route('admin.calendar') }}" class="text-sm font-medium text-brand-700 hover:text-ink">Calendrier →</a>
             </div>
             @forelse ($upcoming as $b)
                 <a href="{{ route('admin.bookings.show', $b) }}" class="flex items-center gap-4 border-t border-neutral-100 px-6 py-3.5 hover:bg-neutral-50">

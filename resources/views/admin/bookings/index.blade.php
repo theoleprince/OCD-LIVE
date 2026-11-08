@@ -42,13 +42,13 @@
                 <tbody>
                     @forelse ($bookings as $b)
                         <tr class="cursor-pointer hover:bg-neutral-50" onclick="window.location='{{ route('admin.bookings.show', $b) }}'">
-                            <td><a href="{{ route('admin.bookings.show', $b) }}" class="font-mono font-semibold text-ink hover:text-gold-700">{{ $b->reference }}</a>
+                            <td><a href="{{ route('admin.bookings.show', $b) }}" class="font-mono font-semibold text-ink hover:text-brand-700">{{ $b->reference }}</a>
                                 @if ($b->is_demo)<span class="badge ml-1 bg-amber-50 text-amber-700 ring-amber-200">DÉMO</span>@endif</td>
                             <td>{{ $b->customer->full_name }}</td>
                             <td class="max-w-[12rem] truncate">{{ $b->business->name }}</td>
                             <td>{{ $b->customer->country }}</td>
                             <td>
-                                <span class="inline-flex items-center gap-1.5"><x-icon :name="$b->mode->value === 'REMOTE' ? 'globe' : 'studio'" class="h-4 w-4 text-gold-600" />{{ $b->mode->shortLabel() }}</span>
+                                <span class="inline-flex items-center gap-1.5"><x-icon :name="$b->mode->value === 'REMOTE' ? 'globe' : 'studio'" class="h-4 w-4 text-brand-600" />{{ $b->mode->shortLabel() }}</span>
                                 @if ($b->needs_assistance)<span class="badge ml-1 bg-sky-50 text-sky-700 ring-sky-200">assistance</span>@endif
                             </td>
                             <td>{{ $b->package->name }}</td>

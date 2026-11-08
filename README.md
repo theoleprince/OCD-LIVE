@@ -1,7 +1,7 @@
 # OCD LIVE
 
 > **Votre produit mérite d'être vu.**
-> Plateforme panafricaine de présentation commerciale en direct — House of Challenge · Studio de Lomé, Togo.
+> Plateforme panafricaine de présentation commerciale en direct — OCD (Les Opportunités C'est Dehors) · Émissions diffusées sur le compte TikTok House of Challenge · Studio de Lomé, Togo.
 > Lancement commercial : 1er décembre 2026.
 
 Application Laravel monolithique : site public premium, parcours de réservation en 8 étapes, calendrier
@@ -28,7 +28,7 @@ des disponibilités, gestion des paiements en attente, tableau de bord d'adminis
 
 | Élément | Version |
 |---|---|
-| PHP | 8.4 (minimum 8.3) |
+| PHP | 8.4 (minimum 8.4 : Symfony 8) |
 | Laravel | 13 |
 | Livewire | 4 (Alpine.js inclus) |
 | Tailwind CSS | 4 (via `@tailwindcss/vite`) |
@@ -103,7 +103,7 @@ paramètres, journal, export ni remboursement).
 
 ## 3. Installation locale (Windows + PowerShell)
 
-Prérequis : PHP ≥ 8.3 avec les extensions `pdo_mysql`, `mbstring`, `openssl`, `fileinfo`, `intl`, `zip` ;
+Prérequis : PHP ≥ 8.4 avec les extensions `pdo_mysql`, `mbstring`, `openssl`, `fileinfo`, `intl`, `zip` ;
 Composer 2 ; Node.js ≥ 20.19 ; MySQL/MariaDB.
 
 > Sur ce poste, PHP 8.4 portable est installé dans `D:\dev\tools\php84` (le PHP 8.1 de XAMPP est trop ancien

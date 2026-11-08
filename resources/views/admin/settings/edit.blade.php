@@ -16,7 +16,7 @@
                     @foreach ([1 => 'Lundi', 2 => 'Mardi', 3 => 'Mercredi', 4 => 'Jeudi', 5 => 'Vendredi', 6 => 'Samedi', 7 => 'Dimanche'] as $n => $label)
                         <label class="cursor-pointer">
                             <input type="checkbox" name="open_weekdays[]" value="{{ $n }}" @checked(in_array($n, old('open_weekdays', $weekdays))) class="peer sr-only">
-                            <span class="block rounded-full border border-neutral-300 px-4 py-2 text-sm peer-checked:border-ink peer-checked:bg-ink peer-checked:text-white">{{ $label }}</span>
+                            <span class="block rounded-full border border-neutral-300 px-4 py-2 text-sm peer-checked:border-brand-600 peer-checked:bg-brand-600 peer-checked:text-white">{{ $label }}</span>
                         </label>
                     @endforeach
                 </div>

@@ -21,7 +21,7 @@
                 <tbody>
                     @forelse ($customers as $c)
                         <tr class="hover:bg-neutral-50">
-                            <td><a href="{{ route('admin.customers.show', $c) }}" class="font-medium text-ink hover:text-gold-700">{{ $c->full_name }}</a>
+                            <td><a href="{{ route('admin.customers.show', $c) }}" class="font-medium text-ink hover:text-brand-700">{{ $c->full_name }}</a>
                                 @if ($c->is_demo)<span class="badge ml-1 bg-amber-50 text-amber-700 ring-amber-200">DÉMO</span>@endif</td>
                             <td><p>{{ $c->phone }}</p><p class="text-xs text-neutral-500">{{ $c->email }}</p></td>
                             <td>{{ $c->country }} · {{ $c->city }}</td>

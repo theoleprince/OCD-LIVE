@@ -15,7 +15,7 @@
                             <td>{{ __('logs.'.$log->action) }}</td>
                             <td>
                                 @if ($log->subject_type === (new \App\Models\Booking)->getMorphClass() && $log->subject_id)
-                                    <a href="{{ route('admin.bookings.show', $log->subject_id) }}" class="text-gold-700 hover:underline">Réservation #{{ $log->subject_id }}</a>
+                                    <a href="{{ route('admin.bookings.show', $log->subject_id) }}" class="text-brand-700 hover:underline">Réservation #{{ $log->subject_id }}</a>
                                 @elseif ($log->subject_type)
                                     {{ class_basename($log->subject_type) }} #{{ $log->subject_id }}
                                 @else — @endif

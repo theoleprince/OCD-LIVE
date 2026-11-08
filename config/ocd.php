@@ -3,7 +3,8 @@
 return [
 
     'name' => 'OCD LIVE',
-    'organization' => 'House of Challenge',
+    'organization' => 'OCD — Les Opportunités C\'est Dehors',
+    'live_account' => 'House of Challenge', // compte TikTok de diffusion des émissions
     'host' => 'Bouvane',
     'slogan' => 'Votre produit mérite d\'être vu.',
     'studio_city' => 'Lomé, Togo',

@@ -7,54 +7,78 @@
 @source '../../app/**/*.php';
 
 @theme {
-    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    --font-display: 'Playfair Display', ui-serif, Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 
-    --color-ink: #0b0b0c;
-    --color-gold-50: #fbf8ef;
-    --color-gold-100: #f5ecd3;
-    --color-gold-200: #ebd8a6;
-    --color-gold-300: #e0c27a;
-    --color-gold-400: #d4ad5c;
-    --color-gold-500: #c9a24d;
-    --color-gold-600: #a9822f;
-    --color-gold-700: #866426;
-    --color-gold-800: #634a1f;
-    --color-gold-900: #43321a;
+    /* Texte principal et fonds sombres (pied de page, administration) */
+    --color-ink: #0f172a;
+    --color-navy: #0b1a3a;
 
-    --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
+    /* Bleu vif : couleur principale de la marque */
+    --color-brand-50: #eff5ff;
+    --color-brand-100: #dbe8ff;
+    --color-brand-200: #bfd6ff;
+    --color-brand-300: #93b9ff;
+    --color-brand-400: #5f93ff;
+    --color-brand-500: #3a6ffb;
+    --color-brand-600: #2456f0;
+    --color-brand-700: #1c43d6;
+    --color-brand-800: #1d39ad;
+    --color-brand-900: #1e3688;
+
+    /* Vert : actions (réserver, valider) */
+    --color-accent-50: #ecfdf3;
+    --color-accent-100: #d1fae1;
+    --color-accent-200: #a7f3c8;
+    --color-accent-300: #6ee7a6;
+    --color-accent-400: #34d37f;
+    --color-accent-500: #12b85f;
+    --color-accent-600: #079a4c;
+    --color-accent-700: #087a3f;
+
+    --animate-pulse-soft: pulse-soft 2s ease-in-out infinite;
+    --animate-float: float 6s ease-in-out infinite;
 
     @keyframes pulse-soft {
         0%, 100% { opacity: 1; }
-        50% { opacity: .45; }
+        50% { opacity: .4; }
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
     }
 }
 
 @layer base {
     [x-cloak] { display: none !important; }
 
-    h2.legal, .legal h2 { @apply mt-10 font-display text-xl text-ink; }
+    body { @apply bg-white text-slate-700; }
 
-    :focus-visible { outline: 2px solid var(--color-gold-500); outline-offset: 2px; }
+    .font-display { font-weight: 800; letter-spacing: -0.025em; }
+
+    .legal h2 { @apply mt-10 font-display text-xl text-ink; }
+
+    :focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 2px; }
 }
 
-@utility btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold tracking-wide transition duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; }
-@utility btn-primary { @apply btn bg-ink text-white hover:bg-neutral-800; }
-@utility btn-gold { @apply btn bg-gold-500 text-ink shadow-[0_10px_30px_-10px_rgba(201,162,77,0.7)] hover:bg-gold-400; }
-@utility btn-outline { @apply btn border border-neutral-300 bg-white text-ink hover:border-ink; }
-@utility btn-light { @apply btn bg-white text-ink hover:bg-gold-100; }
-@utility btn-ghost { @apply btn px-4 text-neutral-600 hover:text-ink; }
-@utility btn-sm { @apply px-4 py-2 text-xs; }
+@utility btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-bold transition duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; }
+@utility btn-primary { @apply btn bg-brand-600 text-white shadow-[0_10px_24px_-10px_rgba(36,86,240,0.7)] hover:bg-brand-700; }
+@utility btn-accent { @apply btn bg-accent-500 text-white shadow-[0_10px_24px_-10px_rgba(18,184,95,0.75)] hover:bg-accent-600; }
+@utility btn-outline { @apply btn border border-slate-200 bg-white text-ink hover:border-brand-400 hover:text-brand-700; }
+@utility btn-light { @apply btn bg-white text-brand-700 hover:bg-brand-50; }
+@utility btn-ghost { @apply btn px-4 text-slate-600 hover:text-brand-700; }
+@utility btn-sm { @apply rounded-lg px-4 py-2 text-xs; }
 @utility btn-danger { @apply btn border border-red-200 bg-white text-red-700 hover:bg-red-50; }
-@utility field { @apply rounded-xl border border-neutral-300 bg-white px-4 py-3 text-[15px] text-ink placeholder:text-neutral-400 transition focus:border-ink focus:ring-2 focus:ring-gold-500/30 focus:outline-none aria-[invalid=true]:border-red-400; }
+@utility field { @apply rounded-xl border border-slate-300 bg-white px-4 py-3 text-[15px] text-ink placeholder:text-slate-400 transition focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15 focus:outline-none aria-[invalid=true]:border-red-400; }
 @utility field-sm { @apply field py-2 text-sm; }
-@utility eyebrow { @apply text-xs font-semibold uppercase tracking-[0.22em] text-gold-600; }
-@utility section-title { @apply mt-4 font-display text-3xl leading-tight text-ink sm:text-4xl lg:text-5xl; }
-@utility card { @apply rounded-2xl border border-neutral-200 bg-white; }
-@utility badge { @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset whitespace-nowrap; }
+@utility eyebrow { @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-600; }
+@utility section-title { @apply mt-3 font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]; }
+@utility card { @apply rounded-2xl border border-slate-200 bg-white; }
+@utility badge { @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 ring-inset whitespace-nowrap; }
 @utility table-admin { @apply w-full text-left text-sm; }
-.table-admin th { @apply whitespace-nowrap border-b border-neutral-200 bg-neutral-50 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-neutral-500; }
-.table-admin td { @apply whitespace-nowrap border-b border-neutral-100 px-4 py-3; }
+.table-admin th { @apply whitespace-nowrap border-b border-slate-200 bg-slate-50 px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500; }
+.table-admin td { @apply whitespace-nowrap border-b border-slate-100 px-4 py-3; }
 
 @utility no-scrollbar {
     scrollbar-width: none;
@@ -62,8 +86,9 @@
 }
 
 /* Apparition discrète au défilement (désactivée si l'utilisateur réduit les animations) */
-.js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
 .js .reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
     .js .reveal { opacity: 1; transform: none; transition: none; }
+    .animate-float, .animate-pulse-soft { animation: none; }
 }

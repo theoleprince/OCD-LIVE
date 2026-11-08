@@ -7,7 +7,7 @@
     @php
         $pageTitle = trim($__env->yieldContent('title'));
         $fullTitle = $pageTitle ? $pageTitle.' | OCD LIVE' : 'OCD LIVE — Votre produit mérite d\'être vu';
-        $description = trim($__env->yieldContent('description')) ?: 'OCD Live, la plateforme panafricaine de présentation commerciale en direct de House of Challenge. Présentez vos produits en live depuis notre studio de Lomé ou à distance, partout en Afrique.';
+        $description = trim($__env->yieldContent('description')) ?: 'OCD Live, la plateforme panafricaine de présentation commerciale en direct, diffusée sur le compte TikTok House of Challenge. Présentez vos produits en live depuis notre studio de Lomé ou à distance, partout en Afrique.';
     @endphp
     <title>{{ $fullTitle }}</title>
     <meta name="description" content="{{ $description }}">
@@ -28,7 +28,7 @@
 
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=playfair-display:500,600,700|inter:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800&display=swap" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles

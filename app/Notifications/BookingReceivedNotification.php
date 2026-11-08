@@ -33,6 +33,6 @@ class BookingReceivedNotification extends Notification
             ->line('**Mode :** '.$b->mode->label())
             ->line('Votre créneau est réservé provisoirement. Votre réservation sera confirmée après réception du paiement et validation par notre équipe.')
             ->line('Notre équipe vous contactera sur WhatsApp au '.$b->customer->whatsapp.' pour les modalités de paiement.')
-            ->salutation('L\'équipe OCD Live — House of Challenge');
+            ->salutation('L\'équipe OCD Live');
     }
 }
