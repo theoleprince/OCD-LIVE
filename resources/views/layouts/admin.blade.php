@@ -16,13 +16,22 @@
     @php
         $user = auth()->user();
         $isAdmin = $user->role === \App\Enums\UserRole::Admin;
+        $isModerator = $user->role === \App\Enums\UserRole::Moderator;
         $unread = $user->unreadNotifications()->count();
         $links = array_filter([
-            ['admin.dashboard', 'Tableau de bord', 'home', 'admin.dashboard'],
-            ['admin.bookings.index', 'Réservations', 'ticket', 'admin.bookings.*'],
-            ['admin.calendar', 'Calendrier', 'calendar', 'admin.calendar*'],
-            ['admin.customers.index', 'Clients', 'users', 'admin.customers.*'],
+            ! $isModerator ? ['admin.dashboard', 'Tableau de bord', 'home', 'admin.dashboard'] : null,
+            ! $isModerator ? ['admin.bookings.index', 'Réservations', 'ticket', 'admin.bookings.*'] : null,
+            ! $isModerator ? ['admin.calendar', 'Calendrier', 'calendar', 'admin.calendar*'] : null,
+            ! $isModerator ? ['admin.customers.index', 'Clients', 'users', 'admin.customers.*'] : null,
             $isAdmin ? ['admin.packages.index', 'Packages', 'box', 'admin.packages.*'] : null,
+            ['admin.market.dashboard', 'OCD LIVE MARKET', 'megaphone', 'admin.market.dashboard'],
+            ['admin.market.submissions.index', 'Demandes Market', 'list', 'admin.market.submissions.*'],
+            ['admin.market.lives.index', 'Lives publiés', 'shield', 'admin.market.lives.*'],
+            ['admin.market.reports.index', 'Signalements Market', 'eye', 'admin.market.reports.*'],
+            $isAdmin ? ['admin.market.countries.index', 'Pays & villes', 'globe', 'admin.market.countries.*'] : null,
+            $isAdmin ? ['admin.market.categories.index', 'Catégories Market', 'box', 'admin.market.categories.*'] : null,
+            $isAdmin ? ['admin.market.schedules.index', 'Créneaux Market', 'clock', 'admin.market.schedules.*'] : null,
+            $isAdmin ? ['admin.market.moderators.index', 'Modérateurs', 'users', 'admin.market.moderators.*'] : null,
             ['admin.notifications.index', 'Notifications', 'bell', 'admin.notifications.*'],
             $isAdmin ? ['admin.settings.edit', 'Paramètres', 'cog', 'admin.settings.*'] : null,
             $isAdmin ? ['admin.logs', 'Journal', 'list', 'admin.logs'] : null,

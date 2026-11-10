@@ -11,30 +11,35 @@
     --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 
     /* Texte principal et fonds sombres (pied de page, administration) */
-    --color-ink: #0f172a;
-    --color-navy: #0b1a3a;
+    --color-ink: #171717;
+    --color-navy: #171717;
 
-    /* Bleu vif : couleur principale de la marque */
-    --color-brand-50: #eff5ff;
-    --color-brand-100: #dbe8ff;
-    --color-brand-200: #bfd6ff;
-    --color-brand-300: #93b9ff;
-    --color-brand-400: #5f93ff;
-    --color-brand-500: #3a6ffb;
-    --color-brand-600: #2456f0;
-    --color-brand-700: #1c43d6;
-    --color-brand-800: #1d39ad;
-    --color-brand-900: #1e3688;
+    /* Orange principal OCD Live : CTA, liens, éléments interactifs */
+    --color-brand-50: #fcf2eb;
+    --color-brand-100: #f8e0ce;
+    --color-brand-200: #efc39d;
+    --color-brand-300: #e2a06c;
+    --color-brand-400: #cd7d45;
+    --color-brand-500: #b8611f;
+    --color-brand-600: #a94f17;
+    --color-brand-700: #8a3f12;
+    --color-brand-800: #6c320f;
+    --color-brand-900: #4f240a;
 
-    /* Vert : actions (réserver, valider) */
-    --color-accent-50: #ecfdf3;
-    --color-accent-100: #d1fae1;
-    --color-accent-200: #a7f3c8;
-    --color-accent-300: #6ee7a6;
-    --color-accent-400: #34d37f;
-    --color-accent-500: #12b85f;
-    --color-accent-600: #079a4c;
-    --color-accent-700: #087a3f;
+    /* Orange secondaire OCD Live : actions de mise en avant (réserver, valider) */
+    --color-accent-50: #fdf5ec;
+    --color-accent-100: #fae4cc;
+    --color-accent-200: #f2c99b;
+    --color-accent-300: #e4a96c;
+    --color-accent-400: #d38f49;
+    --color-accent-500: #c87932;
+    --color-accent-600: #ac6426;
+    --color-accent-700: #85501f;
+
+    /* Fond secondaire sable : alternance de sections, placeholders photo */
+    --color-sand-50: #faf8f5;
+    --color-sand-100: #f5f1ec;
+    --color-sand-200: #eae2d8;
 
     --animate-pulse-soft: pulse-soft 2s ease-in-out infinite;
     --animate-float: float 6s ease-in-out infinite;
@@ -63,8 +68,8 @@
 }
 
 @utility btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-bold transition duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; }
-@utility btn-primary { @apply btn bg-brand-600 text-white shadow-[0_10px_24px_-10px_rgba(36,86,240,0.7)] hover:bg-brand-700; }
-@utility btn-accent { @apply btn bg-accent-500 text-white shadow-[0_10px_24px_-10px_rgba(18,184,95,0.75)] hover:bg-accent-600; }
+@utility btn-primary { @apply btn bg-brand-600 text-white shadow-[0_10px_24px_-10px_rgba(169,79,23,0.6)] hover:bg-brand-700; }
+@utility btn-accent { @apply btn bg-accent-500 text-white shadow-[0_10px_24px_-10px_rgba(200,121,50,0.65)] hover:bg-accent-600; }
 @utility btn-outline { @apply btn border border-slate-200 bg-white text-ink hover:border-brand-400 hover:text-brand-700; }
 @utility btn-light { @apply btn bg-white text-brand-700 hover:bg-brand-50; }
 @utility btn-ghost { @apply btn px-4 text-slate-600 hover:text-brand-700; }

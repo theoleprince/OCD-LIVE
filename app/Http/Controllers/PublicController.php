@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Package;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -37,7 +38,13 @@ class PublicController extends Controller
             ['loc' => route('booking'), 'priority' => '0.9', 'changefreq' => 'daily'],
             ['loc' => route('legal.terms'), 'priority' => '0.3', 'changefreq' => 'yearly'],
             ['loc' => route('legal.privacy'), 'priority' => '0.3', 'changefreq' => 'yearly'],
+            ['loc' => route('market.index'), 'priority' => '0.9', 'changefreq' => 'hourly'],
+            ['loc' => route('market.submit'), 'priority' => '0.6', 'changefreq' => 'monthly'],
         ];
+
+        foreach (Country::active()->get() as $country) {
+            $urls[] = ['loc' => route('market.country', $country), 'priority' => '0.7', 'changefreq' => 'daily'];
+        }
 
         return response()->view('public.sitemap', ['urls' => $urls])->header('Content-Type', 'application/xml');
     }

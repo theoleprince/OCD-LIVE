@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Models\AdminActivityLog;
 use Illuminate\Http\RedirectResponse;
@@ -51,7 +52,9 @@ class LoginController extends Controller
         $request->user()->forceFill(['last_login_at' => now()])->save();
         AdminActivityLog::record('auth.login');
 
-        return redirect()->intended(route('admin.dashboard'));
+        $home = $request->user()->role === UserRole::Moderator ? route('admin.market.dashboard') : route('admin.dashboard');
+
+        return redirect()->intended($home);
     }
 
     public function destroy(Request $request): RedirectResponse

@@ -5,9 +5,10 @@
         <a href="{{ route('home') }}" aria-label="OCD LIVE — accueil"><x-logo /></a>
 
         <nav class="hidden items-center gap-1 text-sm font-semibold text-slate-600 lg:flex" aria-label="Navigation principale">
-            @foreach (['concept' => 'Le concept', 'fonctionnement' => 'Comment ça marche', 'packages' => 'Packages', 'faq' => 'FAQ', 'contact' => 'Contact'] as $anchor => $label)
-                <a href="{{ route('home') }}#{{ $anchor }}" class="rounded-lg px-3 py-2 transition hover:bg-brand-50 hover:text-brand-700">{{ $label }}</a>
+            @foreach (['concept' => 'Le concept', 'services' => 'Nos services', 'fonctionnement' => 'Comment ça marche', 'packages' => 'Packages', 'galerie' => 'Galerie', 'faq' => 'FAQ', 'contact' => 'Contact'] as $anchor => $label)
+                <a href="{{ route('home') }}#{{ $anchor }}" class="rounded-lg px-2.5 py-2 transition hover:bg-brand-50 hover:text-brand-700">{{ $label }}</a>
             @endforeach
+            <a href="{{ route('market.index') }}" class="rounded-lg px-2.5 py-2 transition hover:bg-brand-50 hover:text-brand-700">Market</a>
         </nav>
 
         <div class="flex items-center gap-2">
@@ -21,9 +22,10 @@
 
     <div id="menu-mobile" x-show="open" x-cloak x-transition.opacity.duration.200ms @click.outside="open = false" class="border-t border-slate-100 bg-white lg:hidden">
         <nav class="mx-auto flex max-w-7xl flex-col px-4 py-4 text-base font-semibold" aria-label="Navigation mobile">
-            @foreach (['concept' => 'Le concept', 'fonctionnement' => 'Comment ça marche', 'packages' => 'Packages', 'faq' => 'FAQ', 'contact' => 'Contact'] as $anchor => $label)
+            @foreach (['concept' => 'Le concept', 'services' => 'Nos services', 'fonctionnement' => 'Comment ça marche', 'packages' => 'Packages', 'galerie' => 'Galerie', 'faq' => 'FAQ', 'contact' => 'Contact'] as $anchor => $label)
                 <a href="{{ route('home') }}#{{ $anchor }}" @click="open = false" class="border-b border-slate-100 py-3.5 text-slate-700">{{ $label }}</a>
             @endforeach
+            <a href="{{ route('market.index') }}" @click="open = false" class="border-b border-slate-100 py-3.5 text-slate-700">Market</a>
             <a href="{{ route('booking') }}" class="btn-accent mt-5 w-full">Réserver mon Live</a>
         </nav>
     </div>

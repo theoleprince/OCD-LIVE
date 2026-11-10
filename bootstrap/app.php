@@ -18,7 +18,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->append(SecurityHeaders::class);
         $middleware->alias(['role' => EnsureUserHasRole::class]);
         $middleware->redirectGuestsTo(fn () => route('login'));
-        $middleware->redirectUsersTo(fn () => route('admin.dashboard'));
+        $middleware->redirectUsersTo(fn ($request) => $request->user()->role === \App\Enums\UserRole::Moderator
+            ? route('admin.market.dashboard')
+            : route('admin.dashboard'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->dontReportDuplicates();

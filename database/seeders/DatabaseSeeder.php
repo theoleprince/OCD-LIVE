@@ -14,6 +14,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PackageSeeder::class);
 
+        $this->call(CountrySeeder::class);
+        $this->call(CitySeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(LiveScheduleSeeder::class);
+
         if (config('ocd.admin.email')) {
             Artisan::call('ocd:create-admin');
             $this->command?->getOutput()->write(Artisan::output());

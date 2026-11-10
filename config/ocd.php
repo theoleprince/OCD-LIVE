@@ -39,6 +39,10 @@ return [
         'min_notice_hours' => '24',
         'payment_hold_hours' => '72',
         'admin_notification_email' => '',
+
+        // OCD LIVE MARKET
+        'market_publication_minutes' => '90',
+        'market_notification_email' => '',
     ],
 
     'uploads' => [

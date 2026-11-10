@@ -30,33 +30,21 @@
                 </ul>
             </div>
 
-            {{-- Aperçu illustratif d'une émission --}}
-            <div class="reveal relative mx-auto w-full max-w-sm lg:max-w-md" aria-hidden="true">
-                <div class="relative mx-auto aspect-[9/16] w-64 rotate-2 overflow-hidden rounded-[2.5rem] border-[10px] border-ink bg-gradient-to-br from-brand-600 via-brand-500 to-accent-500 shadow-2xl shadow-brand-900/30 sm:w-72">
-                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),transparent_45%)]"></div>
-                    <div class="absolute left-4 right-4 top-5 flex items-center justify-between">
-                        <span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-md bg-red-500 px-2 py-1 text-[11px] font-extrabold text-white"><span class="h-1.5 w-1.5 rounded-full bg-white animate-pulse-soft"></span>EN DIRECT</span>
-                        <span class="rounded-md bg-black/25 px-2 py-1 text-[11px] font-semibold text-white">@houseofchallenge</span>
-                    </div>
-                    <div class="absolute inset-x-0 top-1/3 grid place-items-center">
-                        <span class="grid h-20 w-20 place-items-center rounded-3xl bg-white/20 text-white backdrop-blur"><x-icon name="box" class="h-10 w-10" /></span>
-                    </div>
-                    <div class="absolute bottom-24 left-4 space-y-2">
-                        <p class="w-fit rounded-2xl rounded-bl-sm bg-white/90 px-3 py-1.5 text-xs font-semibold text-ink">Vous livrez à Douala ?</p>
-                        <p class="w-fit rounded-2xl rounded-bl-sm bg-white/90 px-3 py-1.5 text-xs font-semibold text-ink">Je veux le pack rouge</p>
-                    </div>
-                    <div class="absolute inset-x-4 bottom-5 rounded-2xl bg-white p-3 shadow-lg">
-                        <p class="text-[11px] font-bold uppercase tracking-wider text-brand-600">Votre business</p>
-                        <p class="mt-0.5 whitespace-nowrap text-sm font-extrabold text-ink">Tél. +228 90 00 00 00</p>
-                    </div>
+            {{-- Le présentateur devant la carte d'Afrique rétro-éclairée, écho du mur du studio --}}
+            <div class="reveal relative mx-auto w-full max-w-sm lg:max-w-md">
+                <div class="relative flex aspect-[4/5] w-full flex-col items-center overflow-hidden rounded-[2rem] bg-gradient-to-b from-ink to-neutral-800 shadow-2xl shadow-ink/25">
+                    <x-africa-silhouette class="absolute left-1/2 top-[4%] h-[72%] w-[72%] -translate-x-1/2" />
+                    <img src="{{ asset('images/hero/presentateur-studio-hero.jpg') }}" alt="Présentateur OCD Live, micro en main, devant la carte d'Afrique rétro-éclairée du studio" class="relative z-10 mt-auto h-[58%] w-full rounded-t-[1.5rem] object-cover object-top">
                 </div>
-                <div class="absolute -left-2 top-16 hidden animate-float rounded-2xl bg-white p-3 shadow-xl ring-1 ring-slate-100 sm:block">
+                <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 whitespace-nowrap rounded-md bg-red-500 px-2.5 py-1.5 text-[11px] font-extrabold text-white shadow-lg">
+                    <span class="h-1.5 w-1.5 rounded-full bg-white animate-pulse-soft"></span>EN DIRECT
+                </span>
+                <div class="absolute -left-4 bottom-16 hidden animate-float rounded-2xl bg-white p-3 shadow-xl ring-1 ring-sand-200 sm:block">
                     <p class="flex items-center gap-2 text-xs font-bold text-ink"><span class="grid h-8 w-8 place-items-center rounded-lg bg-accent-100 text-accent-600"><x-icon name="megaphone" class="h-4 w-4" /></span>Visibilité en direct</p>
                 </div>
-                <div class="absolute -right-2 bottom-24 hidden animate-float rounded-2xl bg-white p-3 shadow-xl ring-1 ring-slate-100 [animation-delay:1.5s] sm:block">
+                <div class="absolute -right-4 top-14 hidden animate-float rounded-2xl bg-white p-3 shadow-xl ring-1 ring-sand-200 [animation-delay:1.5s] sm:block">
                     <p class="flex items-center gap-2 text-xs font-bold text-ink"><span class="grid h-8 w-8 place-items-center rounded-lg bg-brand-100 text-brand-600"><x-icon name="globe" class="h-4 w-4" /></span>Partout en Afrique</p>
                 </div>
-                <p class="mt-6 text-center text-xs text-slate-400">Illustration d'une émission OCD Live</p>
             </div>
         </div>
 
@@ -90,13 +78,14 @@
                 <h2 class="section-title">La vitrine en direct des entrepreneurs africains.</h2>
                 <p class="mt-6 text-lg leading-relaxed text-slate-600">OCD Live est une plateforme panafricaine de marketing et de présentation commerciale en direct, portée par <strong class="text-ink">OCD — Les Opportunités C'est Dehors</strong> et animée par <strong class="text-ink">{{ config('ocd.host') }}</strong>.</p>
                 <p class="mt-4 leading-relaxed text-slate-600">Commerçants, restaurateurs, artisans et entreprises présentent leurs produits et services lors d'émissions diffusées en direct sur le compte TikTok <strong class="text-ink">House of Challenge</strong>. L'objectif : vous donner de la visibilité, faire connaître votre activité et vos coordonnées, et créer de vraies opportunités de vente.</p>
+                <x-photo src="images/concept/entrepreneuse-boutique.jpg" alt="Entrepreneuse africaine présentant ses produits dans sa boutique" ratio="aspect-[16/10]" class="mt-8" />
             </div>
             <div class="reveal grid grid-cols-2 gap-4">
                 @foreach ([
                     ['megaphone', 'Présentez', 'Vos produits et services à l\'antenne.', 'bg-brand-100 text-brand-600'],
                     ['eye', 'Faites connaître', 'Votre marque, vos coordonnées, votre adresse.', 'bg-accent-100 text-accent-600'],
-                    ['wallet', 'Vendez', 'Créez des opportunités commerciales.', 'bg-violet-100 text-violet-600'],
-                    ['chart', 'Développez', 'Votre business au-delà de vos frontières.', 'bg-orange-100 text-orange-600'],
+                    ['wallet', 'Vendez', 'Créez des opportunités commerciales.', 'bg-sand-200 text-ink'],
+                    ['chart', 'Développez', 'Votre business au-delà de vos frontières.', 'bg-ink text-white'],
                 ] as [$icon, $title, $text, $chip])
                     <div class="card p-5 transition hover:-translate-y-1 hover:shadow-lg sm:p-6">
                         <span class="grid h-12 w-12 place-items-center rounded-xl {{ $chip }}"><x-icon :name="$icon" class="h-6 w-6" /></span>
@@ -108,8 +97,34 @@
         </div>
     </section>
 
+    {{-- NOS SERVICES --}}
+    <section id="services" class="scroll-mt-20 bg-sand-50 py-20 sm:py-24">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="reveal mx-auto max-w-2xl text-center">
+                <p class="eyebrow justify-center">Nos services</p>
+                <h2 class="section-title">Ce que nous mettons à votre service.</h2>
+            </div>
+            <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                @foreach ([
+                    ['images/services/live-presentiel.jpg', 'Live en présentiel — Studio de Lomé', 'Présentez vos produits dans notre studio professionnel : cadrage, son et lumière pris en charge par notre équipe technique.'],
+                    ['images/services/live-distance.jpg', 'Live à distance — Partout en Afrique', 'Participez depuis votre commerce ou votre domicile, où que vous soyez, avec l\'accompagnement de notre assistante basée à Lomé.'],
+                    ['images/services/production-contenus.jpg', 'Production de contenus promotionnels', 'Vidéo promotionnelle et publications pour prolonger la visibilité de votre passage à l\'antenne.'],
+                    ['images/services/accompagnement-commercial.jpg', 'Accompagnement commercial & relais', 'Suivi personnalisé et relais sur les réseaux pour transformer votre passage en opportunités durables.'],
+                ] as [$src, $title, $text])
+                    <div class="reveal card p-3 transition hover:-translate-y-1 hover:shadow-lg">
+                        <x-photo :src="$src" :alt="$title" ratio="aspect-[4/3]" />
+                        <div class="p-4">
+                            <p class="text-lg font-extrabold text-ink">{{ $title }}</p>
+                            <p class="mt-2 text-sm leading-relaxed text-slate-500">{{ $text }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     {{-- COMMENT ÇA MARCHE --}}
-    <section id="fonctionnement" class="scroll-mt-20 bg-slate-50 py-20 sm:py-24">
+    <section id="fonctionnement" class="scroll-mt-20 py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="reveal mx-auto max-w-2xl text-center">
                 <p class="eyebrow justify-center">Comment ça marche ?</p>
@@ -125,7 +140,7 @@
                         ['Passez en direct', 'Après paiement et validation, notre équipe prépare votre émission avec vous.'],
                     ] as $i => [$title, $text])
                         <li class="reveal text-center">
-                            <span class="mx-auto grid h-14 w-14 place-items-center rounded-2xl text-xl font-extrabold text-white shadow-lg {{ $i === 3 ? 'bg-accent-500 shadow-accent-500/30' : 'bg-brand-600 shadow-brand-600/30' }}">{{ $i + 1 }}</span>
+                            <span class="mx-auto grid h-14 w-14 place-items-center rounded-2xl text-xl font-extrabold text-white shadow-lg {{ $i === 3 ? 'bg-ink shadow-ink/30' : 'bg-brand-600 shadow-brand-600/30' }}">{{ $i + 1 }}</span>
                             <p class="mt-5 text-lg font-extrabold text-ink">{{ $title }}</p>
                             <p class="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-slate-500">{{ $text }}</p>
                         </li>
@@ -191,16 +206,39 @@
                 @foreach ([
                     ['studio', 'Régie professionnelle', 'Studio équipé à Lomé, cadrage, son et lumière pris en charge par notre équipe technique.', 'bg-brand-600'],
                     ['megaphone', 'Diffusion en direct sur TikTok', 'Vos produits présentés en direct sur le compte TikTok House of Challenge.', 'bg-accent-500'],
-                    ['globe', 'Panafricain', 'Participez depuis Lomé ou depuis n\'importe quel pays, avec un accompagnement à distance.', 'bg-violet-500'],
-                    ['phone', 'Vos coordonnées à l\'antenne', 'Numéro de téléphone, adresse commerciale et réseaux sociaux mis en avant.', 'bg-orange-500'],
-                    ['users', 'Accompagnement humain', 'Une assistante commerciale à Lomé prépare votre passage avec vous.', 'bg-sky-500'],
-                    ['shield', 'Réservation fiable', 'Créneau garanti sans double réservation, confirmation après paiement et validation.', 'bg-rose-500'],
+                    ['globe', 'Panafricain', 'Participez depuis Lomé ou depuis n\'importe quel pays, avec un accompagnement à distance.', 'bg-ink'],
+                    ['phone', 'Vos coordonnées à l\'antenne', 'Numéro de téléphone, adresse commerciale et réseaux sociaux mis en avant.', 'bg-brand-700'],
+                    ['users', 'Accompagnement humain', 'Une assistante commerciale à Lomé prépare votre passage avec vous.', 'bg-accent-600'],
+                    ['shield', 'Réservation fiable', 'Créneau garanti sans double réservation, confirmation après paiement et validation.', 'bg-ink'],
                 ] as [$icon, $title, $text, $chip])
                     <div class="reveal card p-7 transition hover:-translate-y-1 hover:shadow-lg">
                         <span class="grid h-12 w-12 place-items-center rounded-xl text-white shadow-md {{ $chip }}"><x-icon :name="$icon" class="h-6 w-6" /></span>
                         <p class="mt-5 text-lg font-extrabold text-ink">{{ $title }}</p>
                         <p class="mt-2 text-sm leading-relaxed text-slate-500">{{ $text }}</p>
                     </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- GALERIE --}}
+    <section id="galerie" class="scroll-mt-20 py-20 sm:py-24">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="reveal mx-auto max-w-2xl text-center">
+                <p class="eyebrow justify-center">Galerie</p>
+                <h2 class="section-title">Dans les coulisses de nos émissions.</h2>
+            </div>
+            <div class="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                @foreach ([
+                    ['images/galerie/01-presentateur-camera.jpg', 'Présentateur OCD Live au micro, studio de Lomé'],
+                    ['images/galerie/02-entrepreneuse-produits.jpg', 'Entrepreneuse préparant ses produits avant son passage'],
+                    ['images/galerie/03-commercant-live.jpg', 'Commerçant en direct devant la caméra'],
+                    ['images/galerie/04-equipe-production.jpg', 'Équipe de production en régie'],
+                    ['images/galerie/05-entrepreneur-smartphone.jpg', 'Participation à distance depuis un smartphone'],
+                    ['images/galerie/06-studio-equipement.jpg', 'Notre studio équipé : lumière, son, caméras'],
+                    ['images/galerie/07-multi-entrepreneurs.jpg', 'Entrepreneurs réunis lors d\'une émission OCD Live'],
+                ] as [$src, $caption])
+                    <x-photo :src="$src" :alt="$caption" ratio="aspect-square" class="reveal" />
                 @endforeach
             </div>
         </div>
@@ -237,29 +275,56 @@
         </div>
     </section>
 
+    {{-- MOYENS DE PAIEMENT --}}
+    <section class="pb-20 sm:pb-24">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <div class="reveal rounded-[2rem] border border-slate-200 bg-white p-8 sm:p-10">
+                <div class="mx-auto max-w-xl text-center">
+                    <p class="eyebrow justify-center">Moyens de paiement</p>
+                    <h2 class="mt-3 font-display text-2xl text-ink sm:text-3xl">Réglez selon ce qui vous convient.</h2>
+                    <p class="mt-3 text-sm leading-relaxed text-slate-500">Au lancement, le règlement est coordonné avec notre équipe sur WhatsApp une fois votre créneau réservé — voir « Comment se passe le paiement ? » ci-dessus.</p>
+                </div>
+                <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+                    <x-payment-logo src="images/paiement/flooz.png" label="Flooz" icon="phone" />
+                    <x-payment-logo src="images/paiement/tmoney.png" label="T-Money" icon="phone" />
+                    <x-payment-logo src="images/paiement/visa.svg" label="Visa" icon="wallet" />
+                    <x-payment-logo src="images/paiement/mastercard.svg" label="Mastercard" icon="wallet" />
+                    <x-payment-logo src="images/paiement/virement.svg" label="Virement bancaire" icon="bank" />
+                    <x-payment-logo label="Espèces au studio" icon="cash" />
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- CONTACT --}}
     <section id="contact" class="scroll-mt-20 pb-20 sm:pb-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="reveal relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-600 via-brand-700 to-accent-600 px-6 py-14 text-center text-white sm:px-12 sm:py-20">
-                <div class="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-white/10"></div>
-                <div class="pointer-events-none absolute -bottom-24 -right-16 h-80 w-80 rounded-full bg-white/10"></div>
-                <div class="relative">
-                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-brand-100">Contact</p>
-                    <h2 class="mx-auto mt-3 max-w-2xl font-display text-3xl sm:text-4xl">Parlons de votre prochain passage à l'antenne.</h2>
-                    <p class="mx-auto mt-4 max-w-xl text-brand-50/90">Une question sur les packages ou la participation à distance ? Notre équipe à Lomé vous répond.</p>
-                    <div class="mt-10 grid gap-4 text-left sm:grid-cols-3">
-                        <a href="https://wa.me/{{ preg_replace('/\D+/', '', setting('contact_whatsapp')) }}" target="_blank" rel="noopener" class="rounded-2xl bg-white/10 p-5 ring-1 ring-white/20 transition hover:bg-white/20">
-                            <x-icon name="whatsapp" class="h-6 w-6" /><p class="mt-3 text-sm text-brand-100">WhatsApp</p><p class="font-bold">+{{ preg_replace('/\D+/', '', setting('contact_whatsapp')) }}</p>
-                        </a>
-                        <a href="mailto:{{ setting('contact_email') }}" class="rounded-2xl bg-white/10 p-5 ring-1 ring-white/20 transition hover:bg-white/20">
-                            <x-icon name="mail" class="h-6 w-6" /><p class="mt-3 text-sm text-brand-100">E-mail</p><p class="break-all font-bold">{{ setting('contact_email') }}</p>
-                        </a>
-                        <div class="rounded-2xl bg-white/10 p-5 ring-1 ring-white/20">
-                            <x-icon name="map" class="h-6 w-6" /><p class="mt-3 text-sm text-brand-100">Studio</p><p class="font-bold">{{ setting('contact_address') }}</p>
+            <div class="grid gap-6 lg:grid-cols-5 lg:items-stretch">
+                <div class="reveal relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-600 via-brand-700 to-accent-600 px-6 py-14 text-center text-white sm:px-10 sm:py-16 lg:col-span-3 lg:py-20 lg:text-left">
+                    <div class="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-white/10"></div>
+                    <div class="pointer-events-none absolute -bottom-24 -right-16 h-80 w-80 rounded-full bg-white/10"></div>
+                    <div class="relative">
+                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-brand-100">Contact</p>
+                        <h2 class="mx-auto mt-3 max-w-xl font-display text-3xl sm:text-4xl lg:mx-0">Parlons de votre prochain passage à l'antenne.</h2>
+                        <p class="mx-auto mt-4 max-w-xl text-brand-50/90 lg:mx-0">Une question sur les packages ou la participation à distance ? Notre équipe à Lomé vous répond.</p>
+                        <div class="mt-10 grid gap-4 text-left sm:grid-cols-3">
+                            <a href="https://wa.me/{{ preg_replace('/\D+/', '', setting('contact_whatsapp')) }}" target="_blank" rel="noopener" class="rounded-2xl bg-white/10 p-5 ring-1 ring-white/20 transition hover:bg-white/20">
+                                <x-icon name="whatsapp" class="h-6 w-6" /><p class="mt-3 text-sm text-brand-100">WhatsApp</p><p class="font-bold">+{{ preg_replace('/\D+/', '', setting('contact_whatsapp')) }}</p>
+                            </a>
+                            <a href="mailto:{{ setting('contact_email') }}" class="rounded-2xl bg-white/10 p-5 ring-1 ring-white/20 transition hover:bg-white/20">
+                                <x-icon name="mail" class="h-6 w-6" /><p class="mt-3 text-sm text-brand-100">E-mail</p><p class="break-all font-bold">{{ setting('contact_email') }}</p>
+                            </a>
+                            <div class="rounded-2xl bg-white/10 p-5 ring-1 ring-white/20">
+                                <x-icon name="map" class="h-6 w-6" /><p class="mt-3 text-sm text-brand-100">Studio</p><p class="font-bold">{{ setting('contact_address') }}</p>
+                            </div>
                         </div>
+                        <a href="{{ route('booking') }}" class="btn mt-10 bg-white !px-8 !py-4 text-base text-brand-700 hover:bg-brand-50">Réserver mon Live <x-icon name="arrow-right" class="h-5 w-5" /></a>
+                        <p class="mt-10 text-xs font-bold uppercase tracking-[0.3em] text-brand-100/80">Présentez · Faites connaître · Vendez · Développez</p>
                     </div>
-                    <a href="{{ route('booking') }}" class="btn mt-10 bg-white !px-8 !py-4 text-base text-brand-700 hover:bg-brand-50">Réserver mon Live <x-icon name="arrow-right" class="h-5 w-5" /></a>
-                    <p class="mt-10 text-xs font-bold uppercase tracking-[0.3em] text-brand-100/80">Présentez · Faites connaître · Vendez · Développez</p>
+                </div>
+
+                <div class="reveal lg:col-span-2">
+                    <livewire:contact-form />
                 </div>
             </div>
         </div>

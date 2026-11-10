@@ -1,5 +1,6 @@
-<footer class="bg-navy text-slate-400">
-    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+<footer class="relative overflow-hidden bg-navy text-slate-400">
+    <x-africa-silhouette class="absolute -left-16 -top-10 h-80 w-80 opacity-10" />
+    <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div class="grid gap-12 md:grid-cols-12">
             <div class="md:col-span-5">
                 <x-logo dark />
@@ -9,9 +10,11 @@
             <div class="md:col-span-3">
                 <p class="text-sm font-bold text-white">Navigation</p>
                 <ul class="mt-5 space-y-3 text-sm">
+                    <li><a href="{{ route('home') }}#services" class="hover:text-white">Nos services</a></li>
                     <li><a href="{{ route('home') }}#packages" class="hover:text-white">Nos packages</a></li>
                     <li><a href="{{ route('booking', ['mode' => 'onsite']) }}" class="hover:text-white">Live en présentiel</a></li>
                     <li><a href="{{ route('booking', ['mode' => 'remote']) }}" class="hover:text-white">Live à distance</a></li>
+                    <li><a href="{{ route('home') }}#galerie" class="hover:text-white">Galerie</a></li>
                     <li><a href="{{ route('home') }}#faq" class="hover:text-white">Questions fréquentes</a></li>
                 </ul>
             </div>
