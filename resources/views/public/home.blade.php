@@ -30,16 +30,22 @@
                 </ul>
             </div>
 
-            {{-- Le présentateur devant la carte d'Afrique rétro-éclairée, écho du mur du studio --}}
+            {{-- Le présentateur, photo plein cadre --}}
             <div class="reveal relative mx-auto w-full max-w-sm lg:max-w-md">
-                <div class="relative flex aspect-[4/5] w-full flex-col items-center overflow-hidden rounded-[2rem] bg-gradient-to-b from-ink to-neutral-800 shadow-2xl shadow-ink/25">
-                    <x-africa-silhouette class="absolute left-1/2 top-[4%] h-[72%] w-[72%] -translate-x-1/2" />
-                    <img src="{{ asset('images/hero/presentateur-studio-hero.jpg') }}" alt="Présentateur OCD Live, micro en main, devant la carte d'Afrique rétro-éclairée du studio" class="relative z-10 mt-auto h-[58%] w-full rounded-t-[1.5rem] object-cover object-top">
+                <div class="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-slate-200 shadow-2xl shadow-ink/25 ring-1 ring-black/5">
+                    <img src="{{ asset('images/hero/presentateur-studio-hero.jpg') }}" alt="Présentateur OCD Live souriant, micro en main" fetchpriority="high"
+                        class="absolute inset-0 h-full w-full scale-[1.02] object-cover object-[57%_20%]">
+                    <div class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink/85 via-ink/40 to-transparent"></div>
+                    <div class="absolute inset-x-0 bottom-0 p-6 text-white">
+                        <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">Votre animateur</p>
+                        <p class="mt-1 font-display text-xl">{{ config('ocd.host') }}</p>
+                        <p class="text-sm text-white/80">En direct sur TikTok · House of Challenge</p>
+                    </div>
                 </div>
                 <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 whitespace-nowrap rounded-md bg-red-500 px-2.5 py-1.5 text-[11px] font-extrabold text-white shadow-lg">
                     <span class="h-1.5 w-1.5 rounded-full bg-white animate-pulse-soft"></span>EN DIRECT
                 </span>
-                <div class="absolute -left-4 bottom-16 hidden animate-float rounded-2xl bg-white p-3 shadow-xl ring-1 ring-sand-200 sm:block">
+                <div class="absolute -left-6 top-[46%] hidden animate-float rounded-2xl bg-white p-3 shadow-xl ring-1 ring-sand-200 sm:block">
                     <p class="flex items-center gap-2 text-xs font-bold text-ink"><span class="grid h-8 w-8 place-items-center rounded-lg bg-accent-100 text-accent-600"><x-icon name="megaphone" class="h-4 w-4" /></span>Visibilité en direct</p>
                 </div>
                 <div class="absolute -right-4 top-14 hidden animate-float rounded-2xl bg-white p-3 shadow-xl ring-1 ring-sand-200 [animation-delay:1.5s] sm:block">
@@ -256,7 +262,7 @@
                     ['Qu\'est-ce qu\'une émission OCD Live ?', 'C\'est une émission commerciale diffusée en direct sur le compte TikTok House of Challenge, pendant laquelle vous présentez vos produits ou services, vos coordonnées et votre adresse commerciale.'],
                     ['Puis-je participer sans venir à Lomé ?', 'Oui. Avec le Live à distance, vous intervenez depuis votre domicile, votre boutique ou votre entreprise. Notre assistante basée à Lomé organise un test de connexion et vous accompagne pendant l\'émission.'],
                     ['Quand ma réservation est-elle confirmée ?', 'Votre créneau est réservé provisoirement dès l\'envoi de la demande. La réservation est confirmée après réception du paiement et validation par notre équipe. Vous recevez alors un e-mail de confirmation.'],
-                    ['Comment se passe le paiement ?', 'Pour le lancement, notre équipe vous contacte sur WhatsApp pour le règlement (Mobile Money ou espèces au studio). Le paiement en ligne par Mobile Money et carte bancaire arrive prochainement.'],
+                    ['Comment se passe le paiement ?', 'Dès votre demande validée, vous choisissez votre mode de paiement : Moov Money (Flooz), Mixx by Yas (ex-T-Money) ou carte Visa/Mastercard en ligne, de façon sécurisée, ou bien virement bancaire et espèces au studio. Un lien de paiement personnel vous est aussi envoyé par e-mail.'],
                     ['Les ventes sont-elles garanties ?', 'OCD Live vous apporte de la visibilité et des opportunités commerciales. Les ventes dépendent de votre offre et de votre public : nous ne garantissons pas de volume de ventes.'],
                     ['Je vends des produits alimentaires, que dois-je prévoir ?', 'Le formulaire vous demande comment vos produits sont préparés, conservés et présentés afin que nous organisions une présentation dans de bonnes conditions d\'hygiène.'],
                     ['Puis-je modifier ou annuler ma réservation ?', 'Contactez-nous sur WhatsApp ou par e-mail avec votre référence. Les conditions sont précisées dans nos conditions générales.'],
@@ -282,14 +288,13 @@
                 <div class="mx-auto max-w-xl text-center">
                     <p class="eyebrow justify-center">Moyens de paiement</p>
                     <h2 class="mt-3 font-display text-2xl text-ink sm:text-3xl">Réglez selon ce qui vous convient.</h2>
-                    <p class="mt-3 text-sm leading-relaxed text-slate-500">Au lancement, le règlement est coordonné avec notre équipe sur WhatsApp une fois votre créneau réservé — voir « Comment se passe le paiement ? » ci-dessus.</p>
+                    <p class="mt-3 text-sm leading-relaxed text-slate-500">Choisissez votre mode de paiement juste après avoir validé votre réservation. Paiements en ligne sécurisés par FedaPay.</p>
                 </div>
-                <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-                    <x-payment-logo src="images/paiement/flooz.png" label="Flooz" icon="phone" />
-                    <x-payment-logo src="images/paiement/tmoney.png" label="T-Money" icon="phone" />
-                    <x-payment-logo src="images/paiement/visa.svg" label="Visa" icon="wallet" />
-                    <x-payment-logo src="images/paiement/mastercard.svg" label="Mastercard" icon="wallet" />
-                    <x-payment-logo src="images/paiement/virement.svg" label="Virement bancaire" icon="bank" />
+                <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+                    <x-payment-logo src="images/paiement/moov-money.jpg" label="Moov Money (Flooz)" caption="Moov Money" />
+                    <x-payment-logo src="images/paiement/mixx-by-yas.svg" label="Mixx by Yas (ex-T-Money)" caption="Mixx by Yas" />
+                    <x-payment-logo :srcs="['images/paiement/visa.svg', 'images/paiement/mastercard.svg']" label="Carte Visa ou Mastercard" caption="Carte bancaire" />
+                    <x-payment-logo label="Virement bancaire" icon="bank" />
                     <x-payment-logo label="Espèces au studio" icon="cash" />
                 </div>
             </div>

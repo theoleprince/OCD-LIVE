@@ -63,7 +63,9 @@ class BookingCreationTest extends TestCase
             ->call('submit')
             ->assertHasNoErrors()
             ->assertSet('step', 8)
-            ->assertSee('En attente de paiement');
+            ->assertSee('En attente de paiement')
+            ->assertSee('Choisissez votre mode de paiement')
+            ->assertSet('paymentToken', Booking::sole()->payment_token);
 
         $booking = Booking::with(['customer', 'business', 'package', 'payments'])->sole();
         $this->assertMatchesRegularExpression('/^OCD-2026-\d{4}$/', $booking->reference);

@@ -40,6 +40,7 @@ class SettingController extends Controller
             'min_notice_hours' => ['required', 'integer', 'min:0', 'max:720'],
             'payment_hold_hours' => ['required', 'integer', 'min:1', 'max:720'],
             'admin_notification_email' => ['nullable', 'email', 'max:190'],
+            'bank_transfer_details' => ['nullable', 'string', 'max:1000'],
         ]);
 
         $data['open_weekdays'] = collect($data['open_weekdays'])->map('intval')->unique()->sort()->implode(',');

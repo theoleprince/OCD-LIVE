@@ -12,18 +12,26 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Booking extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'reference', 'customer_id', 'business_id', 'package_id', 'mode', 'booking_date',
+        'reference', 'payment_token', 'customer_id', 'business_id', 'package_id', 'mode', 'booking_date',
         'starts_at', 'ends_at', 'duration_minutes', 'amount', 'currency', 'status',
         'participant_timezone', 'connection_type', 'needs_assistance', 'assistance_notes',
         'products_count', 'customer_notes', 'admin_notes', 'stream_link', 'payment_due_at',
         'confirmed_at', 'cancelled_at', 'completed_at', 'cancellation_reason', 'is_demo', 'ip_address',
     ];
+
+    protected static function booted(): void
+    {
+        static::creating(function (Booking $booking) {
+            $booking->payment_token ??= Str::random(40);
+        });
+    }
 
     protected function casts(): array
     {

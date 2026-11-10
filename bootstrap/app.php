@@ -15,6 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         // Railway termine le TLS en amont : on fait confiance au proxy pour X-Forwarded-*.
         $middleware->trustProxies(at: '*');
+        // Le webhook FedaPay est authentifié par sa signature, pas par un jeton CSRF.
+        $middleware->validateCsrfTokens(except: ['webhooks/fedapay']);
         $middleware->append(SecurityHeaders::class);
         $middleware->alias(['role' => EnsureUserHasRole::class]);
         $middleware->redirectGuestsTo(fn () => route('login'));

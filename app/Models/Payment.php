@@ -37,6 +37,8 @@ class Payment extends Model
     {
         return [
             'mobile_money' => 'Mobile Money',
+            'moov_money' => 'Moov Money (Flooz)',
+            'mixx' => 'Mixx by Yas',
             'card' => 'Carte bancaire',
             'transfer' => 'Virement',
             'cash' => 'Espèces au studio',

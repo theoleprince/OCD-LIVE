@@ -66,6 +66,14 @@
             <p class="mt-1 text-xs text-neutral-500">Tous les comptes de l'équipe reçoivent déjà les notifications dans le tableau de bord et par e-mail.</p>
         </section>
 
+        <section class="card p-5 sm:p-8">
+            <h2 class="font-semibold text-ink">Paiement par virement</h2>
+            <label class="mt-4 block text-sm font-medium">Coordonnées bancaires affichées au client qui choisit le virement
+                <textarea name="bank_transfer_details" rows="4" placeholder="Titulaire : …&#10;Banque : …&#10;IBAN / RIB : …" class="field mt-1.5 w-full sm:w-2/3">{{ old('bank_transfer_details', $values['bank_transfer_details']) }}</textarea>
+            </label>
+            <p class="mt-1 text-xs text-neutral-500">Laissé vide, le client est invité à demander les coordonnées sur WhatsApp. Le paiement en ligne (Moov Money, Mixx by Yas, carte) se configure avec les variables FEDAPAY_* du serveur.</p>
+        </section>
+
         <button class="btn-primary">Enregistrer les paramètres</button>
     </form>
 @endsection

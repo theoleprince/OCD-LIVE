@@ -39,6 +39,7 @@ return [
         'min_notice_hours' => '24',
         'payment_hold_hours' => '72',
         'admin_notification_email' => '',
+        'bank_transfer_details' => '',
 
         // OCD LIVE MARKET
         'market_publication_minutes' => '90',

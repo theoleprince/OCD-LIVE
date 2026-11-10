@@ -5,13 +5,13 @@ namespace App\Livewire;
 use App\Enums\ParticipationMode;
 use App\Exceptions\SlotUnavailableException;
 use App\Models\Package;
-use App\Payments\PaymentManager;
 use App\Services\AvailabilityService;
 use App\Services\BookingService;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -76,7 +76,8 @@ class BookingWizard extends Component
 
     // Étape 8
     public ?string $reference = null;
-    public array $paymentInstructions = [];
+    #[Locked]
+    public ?string $paymentToken = null;
 
     public function mount(?string $mode = null, ?string $package = null): void
     {
@@ -281,7 +282,7 @@ class BookingWizard extends Component
         }
 
         $this->reference = $booking->reference;
-        $this->paymentInstructions = app(PaymentManager::class)->driver()->initiate($booking->latestPayment()->first())->instructions;
+        $this->paymentToken = $booking->payment_token;
         $this->reset('logo', 'photos');
         $this->step = 8;
     }

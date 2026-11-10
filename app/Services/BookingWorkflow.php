@@ -49,6 +49,69 @@ class BookingWorkflow
         });
     }
 
+    /**
+     * Paiement en ligne confirmé par l'API FedaPay (statut relu côté serveur, jamais sur la foi
+     * du navigateur). Idempotent : un paiement déjà payé n'est pas ré-enregistré.
+     */
+    public function recordOnlinePayment(Payment $payment, ?string $providerReference, array $meta = []): Payment
+    {
+        return DB::transaction(function () use ($payment, $providerReference, $meta) {
+            $payment = Payment::query()->lockForUpdate()->findOrFail($payment->id);
+
+            if ($payment->status === PaymentStatus::Paid) {
+                return $payment;
+            }
+
+            $payment->fill([
+                'provider' => 'fedapay',
+                'status' => PaymentStatus::Paid,
+                'provider_reference' => $providerReference ?? $payment->provider_reference,
+                'paid_at' => now(),
+                'meta' => array_merge($payment->meta ?? [], $meta),
+            ])->save();
+
+            $booking = $payment->booking;
+
+            // Une réservation expirée entre-temps n'est pas réactivée automatiquement :
+            // l'équipe voit le paiement dans le journal et décide (nouveau créneau ou remboursement).
+            if ($booking->status === BookingStatus::PendingPayment) {
+                $booking->update(['status' => BookingStatus::PendingReview]);
+            }
+
+            AdminActivityLog::record('payment.online.paid', $booking, [
+                'method' => $payment->method, 'reference' => $payment->provider_reference, 'amount' => $payment->amount,
+                'booking_status' => $booking->status->value,
+            ]);
+
+            return $payment;
+        });
+    }
+
+    /** Paiement en ligne refusé ou annulé : un nouveau paiement en attente permet de réessayer. */
+    public function failOnlinePayment(Payment $payment, string $providerStatus): void
+    {
+        DB::transaction(function () use ($payment, $providerStatus) {
+            $payment = Payment::query()->lockForUpdate()->findOrFail($payment->id);
+
+            if ($payment->status !== PaymentStatus::Pending) {
+                return;
+            }
+
+            $payment->update([
+                'status' => PaymentStatus::Failed,
+                'meta' => array_merge($payment->meta ?? [], ['fedapay_status' => $providerStatus]),
+            ]);
+
+            $booking = $payment->booking;
+
+            if ($booking->status === BookingStatus::PendingPayment) {
+                $booking->payments()->create(['provider' => 'manual', 'amount' => $booking->amount, 'currency' => $booking->currency, 'status' => PaymentStatus::Pending]);
+            }
+
+            AdminActivityLog::record('payment.online.failed', $booking, ['method' => $payment->method, 'status' => $providerStatus]);
+        });
+    }
+
     public function markPaymentFailed(Booking $booking, ?string $note = null): void
     {
         $payment = $booking->payments()->where('status', PaymentStatus::Pending->value)->first();

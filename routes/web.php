@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MarketController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,11 @@ Route::get('/conditions-generales', [PublicController::class, 'terms'])->name('l
 Route::get('/confidentialite', [PublicController::class, 'privacy'])->name('legal.privacy');
 Route::get('/sitemap.xml', [PublicController::class, 'sitemap'])->name('sitemap');
 Route::get('/robots.txt', [PublicController::class, 'robots'])->name('robots');
+
+// ─── Paiement d'une réservation (accès par jeton) + webhook FedaPay ───
+Route::get('/paiement/{token}', [PaymentController::class, 'show'])->name('payment.show');
+Route::get('/paiement/{token}/retour', [PaymentController::class, 'return'])->middleware('throttle:30,1')->name('payment.return');
+Route::post('/webhooks/fedapay', [PaymentController::class, 'webhook'])->middleware('throttle:120,1')->name('payment.webhook');
 
 // ─── OCD LIVE MARKET (public) ───
 // Les routes littérales doivent être déclarées avant /market/{country} (slug dynamique) pour éviter toute collision.

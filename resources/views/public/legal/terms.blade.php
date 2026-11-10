@@ -9,7 +9,7 @@
 <p>La réservation n'est définitive qu'après réception du paiement et validation par l'équipe OCD Live, matérialisée par un e-mail de confirmation.</p>
 
 <h2>4. Tarifs et paiement</h2>
-<p>Les tarifs sont indiqués en francs CFA (XOF), toutes taxes comprises le cas échéant. Le paiement s'effectue selon les modalités communiquées par l'équipe (Mobile Money, espèces au studio, ou paiement en ligne lorsqu'il sera disponible). Les modalités particulières des packages Visibility Plus, Influence Boost et Partner of the Month sont précisées dans leur description et, le cas échéant, dans un contrat dédié.</p>
+<p>Les tarifs sont indiqués en francs CFA (XOF), toutes taxes comprises le cas échéant. Le paiement s'effectue en ligne via la plateforme sécurisée FedaPay (Moov Money, Mixx by Yas, carte Visa ou Mastercard), par virement bancaire ou en espèces au studio. OCD Live n'a jamais accès aux codes Mobile Money ni aux données de carte du client. Les modalités particulières des packages Visibility Plus, Influence Boost et Partner of the Month sont précisées dans leur description et, le cas échéant, dans un contrat dédié.</p>
 
 <h2>5. Contenus présentés</h2>
 <p>Le client garantit la licéité des produits et services présentés, l'exactitude des informations fournies et détient les droits sur les logos et visuels transmis. OCD Live peut refuser la présentation de produits illicites, dangereux, contrefaits ou contraires à l'ordre public. Pour les produits alimentaires, le client respecte les règles d'hygiène, de préparation et de conservation applicables.</p>

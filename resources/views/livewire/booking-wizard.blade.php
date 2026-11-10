@@ -336,19 +336,20 @@
                 </p>
             </div>
 
-            <div class="mx-auto mt-6 max-w-xl rounded-2xl border border-neutral-200 p-5 sm:p-6">
-                <p class="mb-3 font-semibold text-ink">Prochaines étapes</p>
-                <ol class="space-y-3 text-sm text-neutral-600">
-                    @foreach ($paymentInstructions as $i => $line)
-                        <li class="flex gap-3"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-100 text-xs font-bold text-brand-800">{{ $i + 1 }}</span>{{ $line }}</li>
-                    @endforeach
-                </ol>
-                <p class="mt-5 rounded-xl bg-neutral-50 p-3 text-xs text-neutral-500">Le paiement en ligne (Mobile Money et carte bancaire) sera disponible prochainement.</p>
-            </div>
+            @if ($paymentToken)
+                <div class="mt-4 border-t border-neutral-100 pt-6">
+                    <livewire:booking-payment :token="$paymentToken" :key="'pay-'.$paymentToken" />
+                </div>
+
+                <p class="mx-auto mt-6 max-w-xl text-center text-xs text-neutral-500">
+                    Vous pouvez aussi payer plus tard depuis ce lien personnel, envoyé par e-mail :<br>
+                    <a href="{{ route('payment.show', $paymentToken) }}" class="break-all font-medium text-brand-700 underline">{{ route('payment.show', $paymentToken) }}</a>
+                </p>
+            @endif
 
             <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-                <a href="https://wa.me/{{ preg_replace('/\D+/', '', setting('contact_whatsapp')) }}?text={{ urlencode('Bonjour OCD Live, je viens de réserver (référence '.$reference.').') }}" target="_blank" rel="noopener" class="btn-accent"><x-icon name="whatsapp" class="h-5 w-5" />Nous écrire sur WhatsApp</a>
-                <a href="{{ route('home') }}" class="btn-outline">Retour à l'accueil</a>
+                <a href="https://wa.me/{{ preg_replace('/\D+/', '', setting('contact_whatsapp')) }}?text={{ urlencode('Bonjour OCD Live, je viens de réserver (référence '.$reference.').') }}" target="_blank" rel="noopener" class="btn-outline"><x-icon name="whatsapp" class="h-5 w-5" />Une question ? WhatsApp</a>
+                <a href="{{ route('home') }}" class="btn-ghost">Retour à l'accueil</a>
             </div>
         @endif
 

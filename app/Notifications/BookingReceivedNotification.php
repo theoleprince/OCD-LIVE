@@ -32,7 +32,9 @@ class BookingReceivedNotification extends Notification
             ->line('**Date :** '.date_fr($b->starts_at).', '.$b->time_range.' (heure de Lomé)')
             ->line('**Mode :** '.$b->mode->label())
             ->line('Votre créneau est réservé provisoirement. Votre réservation sera confirmée après réception du paiement et validation par notre équipe.')
-            ->line('Notre équipe vous contactera sur WhatsApp au '.$b->customer->whatsapp.' pour les modalités de paiement.')
+            ->line('Réglez votre réservation en ligne (Moov Money, Mixx by Yas, carte bancaire) ou choisissez le virement ou les espèces au studio :')
+            ->action('Payer ma réservation', route('payment.show', $b->payment_token))
+            ->line('Ce lien est personnel : ne le partagez pas.')
             ->salutation('L\'équipe OCD Live');
     }
 }
