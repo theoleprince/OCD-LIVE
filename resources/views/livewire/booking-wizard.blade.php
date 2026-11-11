@@ -162,23 +162,32 @@
                     @foreach (array_keys(config('ocd.countries')) as $c) <option value="{{ $c }}">{{ $c }}</option> @endforeach
                 </x-form.select>
                 <x-form.input label="Ville" model="city" autocomplete="address-level2" required />
-                <x-form.input label="Téléphone" model="phone" type="tel" autocomplete="tel" placeholder="+228 90 00 00 00" required />
-                <x-form.input label="WhatsApp" model="whatsapp" type="tel" placeholder="+237 6 00 00 00 00" required />
-                <div class="sm:col-span-2"><x-form.input label="Adresse e-mail" model="email" type="email" autocomplete="email" required /></div>
+                <x-form.input label="Téléphone ou WhatsApp" model="phone" type="tel" autocomplete="tel" placeholder="+228 90 00 00 00" required />
+                <x-form.input label="Votre e-mail" model="email" type="email" autocomplete="email" required />
             </div>
+            <details class="mt-5 rounded-xl border border-neutral-200 p-4" @if($errors->has('whatsapp')) open @endif>
+                <summary class="cursor-pointer text-sm font-semibold text-brand-700">Mon WhatsApp utilise un autre numéro</summary>
+                <div class="mt-4"><x-form.input label="Autre numéro WhatsApp (facultatif)" model="whatsapp" type="tel" placeholder="+237 6 00 00 00 00" /></div>
+            </details>
 
             @if ($mode === 'REMOTE')
                 <div class="mt-8 rounded-2xl border border-brand-200 bg-brand-50/50 p-5 sm:p-6">
                     <p class="mb-1 flex items-center gap-2 font-semibold text-ink"><x-icon name="globe" class="h-5 w-5 text-brand-600" />Participation à distance</p>
                     <p class="mb-5 text-sm text-neutral-600">Notre assistante commerciale basée à Lomé vous accompagne avant et pendant l'émission.</p>
-                    <div class="grid gap-5 sm:grid-cols-2">
-                        <x-form.select label="Votre fuseau horaire" model="timezone" live required>
+                    <details class="mb-5 rounded-xl border border-brand-200 p-4" @if($errors->hasAny(['timezone', 'connectionType'])) open @endif>
+                        <summary class="cursor-pointer text-sm font-semibold text-brand-700">Préciser ma connexion ou mon heure locale (facultatif)</summary>
+                        <p class="mt-3 text-xs text-neutral-500">Votre heure locale est déjà choisie à partir de votre pays.</p>
+                        <div class="mt-4 grid gap-5 sm:grid-cols-2">
+                        <x-form.select label="Votre heure locale" model="timezone" live>
                             @foreach (collect(config('ocd.countries'))->unique()->sort() as $tz) <option value="{{ $tz }}">{{ $tz }}</option> @endforeach
                         </x-form.select>
-                        <x-form.select label="Type de connexion internet" model="connectionType" required>
-                            <option value="">Sélectionner…</option>
+                        <x-form.select label="Connexion internet" model="connectionType">
+                            <option value="">Je ne sais pas / à préciser plus tard</option>
                             @foreach (config('ocd.connection_types') as $k => $v) <option value="{{ $k }}">{{ $v }}</option> @endforeach
                         </x-form.select>
+                        </div>
+                    </details>
+                    <div class="grid gap-5 sm:grid-cols-2">
                         <label class="flex items-start gap-3 sm:col-span-2">
                             <input type="checkbox" wire:model.live="needsAssistance" class="mt-1 h-5 w-5 rounded border-neutral-300 text-brand-600 focus:ring-brand-500">
                             <span class="text-sm text-neutral-700">J'ai besoin d'une assistance (installation, test de connexion, cadrage, éclairage…)</span>
@@ -193,19 +202,24 @@
 
         {{-- ÉTAPE 6 : INFORMATIONS COMMERCIALES --}}
         @if ($step === 6)
-            <x-wizard.heading step="6" title="Votre business" subtitle="Ces informations seront présentées à l'antenne pour faire connaître votre activité." />
+            <x-wizard.heading step="6" title="Votre activité" subtitle="Présentez simplement ce que vous faites. Les autres précisions peuvent attendre." />
 
             <div class="grid gap-5 sm:grid-cols-2">
-                <x-form.input label="Nom du business" model="businessName" required />
+                <x-form.input label="Nom de votre boutique ou de votre activité" model="businessName" required />
                 <x-form.select label="Secteur d'activité" model="sector" live required>
                     <option value="">Sélectionner…</option>
                     @foreach (config('ocd.sectors') as $s) <option value="{{ $s }}">{{ $s }}</option> @endforeach
                 </x-form.select>
-                <div class="sm:col-span-2"><x-form.textarea label="Description de l'activité" model="description" rows="4" hint="20 caractères minimum." required /></div>
-                <div class="sm:col-span-2"><x-form.textarea label="Nature des produits ou services" model="offerNature" rows="2" required /></div>
-                <x-form.input label="Téléphone commercial" model="businessPhone" type="tel" required />
-                <x-form.input label="Adresse commerciale" model="businessAddress" required />
+                <div class="sm:col-span-2"><x-form.textarea label="Que souhaitez-vous présenter ?" model="description" rows="3" placeholder="Exemple : je vends des robes et des tissus africains dans ma boutique à Lomé." required /></div>
             </div>
+
+            <details class="mt-6 rounded-2xl border border-neutral-200 p-5" @if($errors->hasAny(['offerNature', 'businessPhone', 'businessAddress', 'socials.*', 'logo', 'photos', 'photos.*', 'productsCount', 'products', 'products.*.name', 'products.*.quantity'])) open @endif>
+                <summary class="cursor-pointer text-sm font-semibold text-brand-700">Ajouter des photos, des produits ou des coordonnées (facultatif)</summary>
+                <div class="mt-5 grid gap-5 sm:grid-cols-2">
+                    <div class="sm:col-span-2"><x-form.textarea label="Autres précisions sur vos produits" model="offerNature" rows="2" /></div>
+                    <x-form.input label="Autre téléphone pour votre commerce" model="businessPhone" type="tel" hint="Sinon, nous utilisons votre numéro de contact." />
+                    <x-form.input label="Adresse de votre commerce" model="businessAddress" />
+                </div>
 
             <p class="mb-3 mt-8 text-sm font-semibold text-ink">Réseaux sociaux <span class="font-normal text-neutral-400">(facultatif)</span></p>
             <div class="grid gap-4 sm:grid-cols-2">
@@ -271,6 +285,7 @@
                 </div>
                 <button type="button" wire:click="addProduct" class="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-ink"><x-icon name="plus" class="h-4 w-4" />Ajouter un produit</button>
             </div>
+            </details>
 
             @if ($this->isFood)
                 <div class="mt-8 rounded-2xl border border-brand-200 bg-brand-50/50 p-5 sm:p-6">
@@ -291,7 +306,7 @@
             <dl class="divide-y divide-neutral-100 rounded-2xl border border-neutral-200">
                 @foreach ([
                     'Client' => $firstName.' '.$lastName,
-                    'Contact' => $phone.' · WhatsApp '.$whatsapp.' · '.$email,
+                    'Contact' => $phone.($whatsapp && $whatsapp !== $phone ? ' · WhatsApp '.$whatsapp : '').' · '.$email,
                     'Business' => $businessName.' — '.$sector,
                     'Pays' => $country.', '.$city,
                     'Mode de participation' => \App\Enums\ParticipationMode::from($mode)->label(),

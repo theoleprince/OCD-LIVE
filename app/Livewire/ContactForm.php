@@ -26,7 +26,7 @@ class ContactForm extends Component
     protected function rules(): array
     {
         return [
-            'fullName' => ['required', 'string', 'max:120'],
+            'fullName' => ['nullable', 'string', 'max:120'],
             'email' => ['required', 'email', 'max:190'],
             'phone' => ['nullable', 'string', 'max:30'],
             'message' => ['required', 'string', 'max:2000'],

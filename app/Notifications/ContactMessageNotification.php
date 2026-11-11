@@ -27,8 +27,11 @@ class ContactMessageNotification extends Notification
         $mail = (new MailMessage)
             ->subject('NOUVEAU MESSAGE — Formulaire de contact OCD LIVE')
             ->greeting('NOUVEAU MESSAGE DE CONTACT')
-            ->line('**Nom :** '.$this->fullName)
             ->line('**E-mail :** '.$this->email);
+
+        if ($this->fullName !== '') {
+            $mail->line('**Nom :** '.$this->fullName);
+        }
 
         if ($this->phone !== '') {
             $mail->line('**Téléphone :** '.$this->phone);

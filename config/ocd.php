@@ -11,6 +11,7 @@ return [
     'timezone' => 'Africa/Lome',
     'currency' => 'FCFA',
     'launch_date' => '2026-12-01',
+    'market_demo_enabled' => filter_var(env('SEED_MARKET_DEMO', false), FILTER_VALIDATE_BOOL),
 
     // Compte administrateur initial (voir php artisan ocd:create-admin).
     'admin' => [

@@ -89,4 +89,9 @@ class LiveSubmission extends Model
     {
         return $this->status === LiveSubmissionStatus::Approved && $this->expires_at?->isFuture();
     }
+
+    public function isDemo(): bool
+    {
+        return str_starts_with($this->reference, 'MKT-DEMO-');
+    }
 }

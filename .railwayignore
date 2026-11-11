@@ -1,0 +1,12 @@
+*.pdf
+reference/
+MARKET_PROGRESS.md
+IMAGES-A-GENERER.md
+.claude/
+output/
+tmp/
+.env
+.env.*
+.git/
+node_modules/
+vendor/

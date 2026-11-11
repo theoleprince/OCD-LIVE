@@ -9,10 +9,15 @@
     @else
         <form wire:submit="submit" class="space-y-5" novalidate>
             <p class="font-display text-xl text-ink">Écrivez-nous</p>
-            <x-form.input label="Nom complet" model="fullName" required />
-            <x-form.input label="E-mail" model="email" type="email" required />
-            <x-form.input label="Téléphone (facultatif)" model="phone" type="tel" />
+            <x-form.input label="Votre e-mail" model="email" type="email" autocomplete="email" hint="Pour recevoir notre réponse." required />
             <x-form.textarea label="Votre message" model="message" rows="4" required />
+            <details class="rounded-xl border border-neutral-200 p-4" @if($errors->hasAny(['fullName', 'phone'])) open @endif>
+                <summary class="cursor-pointer text-sm font-semibold text-brand-700">Ajouter mon nom ou mon téléphone (facultatif)</summary>
+                <div class="mt-4 space-y-4">
+                    <x-form.input label="Votre nom" model="fullName" autocomplete="name" />
+                    <x-form.input label="Téléphone" model="phone" type="tel" autocomplete="tel" />
+                </div>
+            </details>
             <div class="hidden" aria-hidden="true"><input type="text" wire:model="website" tabindex="-1" autocomplete="off"></div>
             @error('submit') <p class="text-sm font-semibold text-red-600">{{ $message }}</p> @enderror
             <button type="submit" class="btn-primary w-full" wire:loading.attr="disabled" wire:target="submit">

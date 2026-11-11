@@ -65,7 +65,48 @@ class SubmissionTest extends TestCase
     {
         Livewire::test(LiveSubmissionForm::class)
             ->call('submit')
-            ->assertHasErrors(['fullName', 'businessName', 'phone', 'countryId', 'cityId', 'categoryId', 'productDescription', 'accountName', 'liveUrl', 'scheduleId', 'acceptTerms', 'authorizePublication', 'confirmOwnership']);
+            ->assertHasErrors(['businessName', 'phone', 'countryId', 'cityId', 'categoryId', 'productDescription', 'accountName', 'liveUrl', 'acceptTerms', 'authorizePublication', 'confirmOwnership']);
+    }
+
+    public function test_short_form_collects_only_essential_fields_and_derives_the_account(): void
+    {
+        Livewire::test(LiveSubmissionForm::class)
+            ->call('next')->assertHasErrors(['liveUrl', 'productDescription'])->assertSet('step', 1)
+            ->set('liveUrl', 'https://www.tiktok.com/@ama_boutique/live')
+            ->set('productDescription', 'Des pagnes et des robes confectionnées dans notre atelier.')
+            ->call('next')->assertHasNoErrors()->assertSet('step', 2)
+            ->set('businessName', 'Boutique Ama')->set('phone', '+22890000001')
+            ->call('next')->assertHasNoErrors()->assertSet('step', 3)
+            ->set('countryId', $this->togo()->id)->set('cityId', $this->lome()->id)
+            ->call('next')->assertHasNoErrors()->assertSet('step', 4)
+            ->call('back')->assertSet('step', 3)->assertSet('businessName', 'Boutique Ama')
+            ->call('next')->set('categoryId', $this->category()->id)->set('acceptAll', true)
+            ->call('submit')->assertHasNoErrors()->assertSet('submitted', true);
+
+        $submission = LiveSubmission::with('seller')->sole();
+        $this->assertSame('@ama_boutique', $submission->account_name);
+        $this->assertSame('Boutique Ama', $submission->seller->full_name);
+        $this->assertNull($submission->schedule_id);
+        $this->assertTrue($submission->consents['publication']);
+    }
+
+    public function test_unchecking_combined_consent_prevents_submission(): void
+    {
+        $this->fillForm()->set('acceptAll', true)->set('acceptAll', false)
+            ->call('submit')->assertHasErrors(['acceptTerms', 'authorizePublication', 'confirmOwnership']);
+        $this->assertSame(0, LiveSubmission::count());
+    }
+
+    public function test_omitting_an_optional_name_preserves_an_existing_seller_name(): void
+    {
+        $this->fillForm()->call('submit')->assertHasNoErrors();
+        LiveSubmission::sole()->update(['status' => LiveSubmissionStatus::Expired]);
+
+        $this->fillForm(['fullName' => '', 'scheduleId' => null, 'accountName' => ''])
+            ->call('submit')->assertHasNoErrors();
+
+        $this->assertSame(1, Seller::count());
+        $this->assertSame('Ama Koffi', Seller::sole()->full_name);
     }
 
     public function test_duplicate_active_submission_for_the_same_tiktok_account_is_rejected(): void

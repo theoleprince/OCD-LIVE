@@ -11,7 +11,7 @@
             <div class="card overflow-hidden">
                 <div class="relative aspect-[16/7] bg-gradient-to-br from-sand-100 to-sand-200">
                     @if ($seller->profile_image)
-                        <img src="{{ asset('storage/'.$seller->profile_image) }}" alt="{{ $seller->business_name }}" class="h-full w-full object-cover">
+                        <img src="{{ $seller->profile_image_url }}" alt="{{ $seller->business_name }}" class="h-full w-full object-cover">
                     @endif
                 </div>
                 <div class="p-6 sm:p-8">

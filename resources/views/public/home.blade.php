@@ -33,8 +33,8 @@
             {{-- Le présentateur, photo plein cadre --}}
             <div class="reveal relative mx-auto w-full max-w-sm lg:max-w-md">
                 <div class="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-slate-200 shadow-2xl shadow-ink/25 ring-1 ring-black/5">
-                    <img src="{{ asset('images/hero/presentateur-studio-hero.jpg') }}" alt="Présentateur OCD Live souriant, micro en main" fetchpriority="high"
-                        class="absolute inset-0 h-full w-full scale-[1.02] object-cover object-[57%_20%]">
+                    <img src="{{ asset('images/hero/presentateur-studio-hero.webp') }}" alt="Présentateur présentant un produit dans le studio OCD Live" fetchpriority="high"
+                        class="absolute inset-0 h-full w-full scale-[1.02] object-cover object-center">
                     <div class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink/85 via-ink/40 to-transparent"></div>
                     <div class="absolute inset-x-0 bottom-0 p-6 text-white">
                         <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">Votre animateur</p>
@@ -56,21 +56,23 @@
 
         {{-- Deux grandes cartes --}}
         <div class="relative mx-auto grid max-w-7xl gap-5 px-4 pb-20 sm:px-6 md:grid-cols-2 lg:px-8">
-            <article class="reveal group relative flex flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-brand-800 p-7 text-white shadow-xl shadow-brand-700/20 sm:p-10">
-                <div class="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/10 transition-transform duration-700 group-hover:scale-125"></div>
-                <span class="grid h-14 w-14 place-items-center rounded-2xl bg-white/15 text-white"><x-icon name="studio" class="h-7 w-7" /></span>
-                <p class="mt-8 text-xs font-bold uppercase tracking-[0.16em] text-brand-100">Studio · Lomé, Togo</p>
+            <article class="reveal group relative isolate flex min-h-[32rem] flex-col overflow-hidden rounded-3xl bg-ink p-7 text-white shadow-xl shadow-brand-700/20 sm:p-10">
+                <img src="{{ asset('images/participation/studio-lome.webp') }}" alt="" loading="lazy" class="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover object-top transition-transform duration-700 motion-safe:group-hover:scale-105">
+                <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-black/95 via-black/65 to-black/10"></div>
+                <span class="mb-16 grid h-14 w-14 place-items-center rounded-2xl bg-black/25 text-white ring-1 ring-white/25 backdrop-blur-sm"><x-icon name="studio" class="h-7 w-7" /></span>
+                <p class="mt-auto text-xs font-bold uppercase tracking-[0.16em] text-white/80">Studio · Lomé, Togo</p>
                 <h2 class="mt-2 font-display text-2xl sm:text-3xl">Live en présentiel – Lomé</h2>
-                <p class="mt-4 flex-1 leading-relaxed text-brand-50/90">Venez dans notre studio à Lomé, présentez vos produits et profitez de notre régie professionnelle pour faire connaître votre activité.</p>
+                <p class="mt-4 leading-relaxed text-white/90">Venez dans notre studio à Lomé, présentez vos produits et profitez de notre régie professionnelle pour faire connaître votre activité.</p>
                 <a href="{{ route('booking', ['mode' => 'onsite']) }}" class="btn-light mt-8 self-start !px-6">RÉSERVER EN PRÉSENTIEL <x-icon name="arrow-right" class="h-4 w-4" /></a>
             </article>
 
-            <article class="reveal group relative flex flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-accent-500 to-accent-700 p-7 text-white shadow-xl shadow-accent-700/20 sm:p-10">
-                <div class="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/10 transition-transform duration-700 group-hover:scale-125"></div>
-                <span class="grid h-14 w-14 place-items-center rounded-2xl bg-white/15 text-white"><x-icon name="globe" class="h-7 w-7" /></span>
-                <p class="mt-8 text-xs font-bold uppercase tracking-[0.16em] text-accent-100">Afrique · International</p>
+            <article class="reveal group relative isolate flex min-h-[32rem] flex-col overflow-hidden rounded-3xl bg-ink p-7 text-white shadow-xl shadow-accent-700/20 sm:p-10">
+                <img src="{{ asset('images/participation/distance-boutique.webp') }}" alt="" loading="lazy" class="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover object-top transition-transform duration-700 motion-safe:group-hover:scale-105">
+                <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-black/95 via-black/65 to-black/10"></div>
+                <span class="mb-16 grid h-14 w-14 place-items-center rounded-2xl bg-black/25 text-white ring-1 ring-white/25 backdrop-blur-sm"><x-icon name="globe" class="h-7 w-7" /></span>
+                <p class="mt-auto text-xs font-bold uppercase tracking-[0.16em] text-white/80">Afrique · International</p>
                 <h2 class="mt-2 font-display text-2xl sm:text-3xl">Live à distance – Afrique et international</h2>
-                <p class="mt-4 flex-1 leading-relaxed text-accent-50/90">Vous êtes au Cameroun, au Sénégal, au Tchad, en Centrafrique ou ailleurs ? Participez à nos émissions depuis votre domicile ou votre commerce avec l'accompagnement de notre assistante basée à Lomé.</p>
+                <p class="mt-4 leading-relaxed text-white/90">Vous êtes au Cameroun, au Sénégal, au Tchad, en Centrafrique ou ailleurs ? Participez à nos émissions depuis votre domicile ou votre commerce avec l'accompagnement de notre assistante basée à Lomé.</p>
                 <a href="{{ route('booking', ['mode' => 'remote']) }}" class="btn mt-8 self-start bg-white !px-6 text-accent-700 hover:bg-accent-50">RÉSERVER À DISTANCE <x-icon name="arrow-right" class="h-4 w-4" /></a>
             </article>
         </div>
@@ -84,7 +86,7 @@
                 <h2 class="section-title">La vitrine en direct des entrepreneurs africains.</h2>
                 <p class="mt-6 text-lg leading-relaxed text-slate-600">OCD Live est une plateforme panafricaine de marketing et de présentation commerciale en direct, portée par <strong class="text-ink">OCD — Les Opportunités C'est Dehors</strong> et animée par <strong class="text-ink">{{ config('ocd.host') }}</strong>.</p>
                 <p class="mt-4 leading-relaxed text-slate-600">Commerçants, restaurateurs, artisans et entreprises présentent leurs produits et services lors d'émissions diffusées en direct sur le compte TikTok <strong class="text-ink">House of Challenge</strong>. L'objectif : vous donner de la visibilité, faire connaître votre activité et vos coordonnées, et créer de vraies opportunités de vente.</p>
-                <x-photo src="images/concept/entrepreneuse-boutique.jpg" alt="Entrepreneuse africaine présentant ses produits dans sa boutique" ratio="aspect-[16/10]" class="mt-8" />
+                <x-photo src="images/concept/entrepreneuse-boutique-local.webp" alt="Entrepreneuse africaine présentant ses produits dans sa boutique" ratio="aspect-[16/10]" class="mt-8" />
             </div>
             <div class="reveal grid grid-cols-2 gap-4">
                 @foreach ([
@@ -103,6 +105,52 @@
         </div>
     </section>
 
+    {{-- APERÇU DU MARKET --}}
+    <section id="market" class="scroll-mt-20 border-y border-sand-200 bg-sand-50 py-20 sm:py-24" aria-labelledby="home-market-title">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+                <div class="max-w-2xl">
+                    <p class="eyebrow"><span class="h-1.5 w-6 rounded-full bg-brand-600"></span>OCD Live Market</p>
+                    <h2 id="home-market-title" class="section-title">Découvrez l'Afrique qui vend en direct.</h2>
+                    <p class="mt-4 text-lg leading-relaxed text-slate-600">Mode, produits locaux, artisanat… Retrouvez les vendeurs depuis leur boutique, leur atelier ou leur domicile et suivez leur live sur TikTok.</p>
+                </div>
+                <a href="{{ route('market.index') }}" class="btn-outline shrink-0 self-start">Explorer le Market <x-icon name="arrow-right" class="h-4 w-4" /></a>
+            </div>
+
+            @if ($marketCountries->isNotEmpty())
+                <nav class="mt-7 flex flex-wrap gap-2" aria-label="Explorer le Market par pays">
+                    @foreach ($marketCountries as $marketCountry)
+                        <a href="{{ route('market.country', $marketCountry) }}" class="inline-flex items-center gap-2 rounded-full border border-sand-200 bg-white px-4 py-2 text-sm font-semibold text-ink transition hover:border-brand-400 hover:text-brand-700">
+                            <span aria-hidden="true">{{ $marketCountry->flag }}</span>{{ $marketCountry->name }}
+                        </a>
+                    @endforeach
+                </nav>
+            @endif
+
+            @if ($marketLives->isNotEmpty())
+                <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    @foreach ($marketLives as $marketLive)
+                        <x-market.live-card :live="$marketLive" :compact="true" />
+                    @endforeach
+                </div>
+            @else
+                <div class="mt-8 rounded-3xl border border-dashed border-sand-300 bg-white px-6 py-10 text-center">
+                    <span class="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-brand-50 text-brand-600"><x-icon name="globe" class="h-7 w-7" /></span>
+                    <p class="mt-4 font-display text-xl text-ink">Les prochains lives arrivent bientôt.</p>
+                    <p class="mt-2 text-slate-500">Vous vendez en direct sur TikTok ? Faites découvrir votre activité sur le Market.</p>
+                </div>
+            @endif
+
+            <div class="mt-8 flex flex-col items-start justify-between gap-4 rounded-2xl bg-white p-5 ring-1 ring-sand-200 sm:flex-row sm:items-center sm:p-6">
+                <div>
+                    <p class="font-semibold text-ink">Votre commerce a aussi sa place ici.</p>
+                    <p class="mt-1 text-sm text-slate-500">Partagez votre lien TikTok, notre équipe s'occupe de vérifier votre demande.</p>
+                </div>
+                <a href="{{ route('market.submit') }}" class="btn-accent shrink-0">Proposer mon live <x-icon name="arrow-right" class="h-4 w-4" /></a>
+            </div>
+        </div>
+    </section>
+
     {{-- NOS SERVICES --}}
     <section id="services" class="scroll-mt-20 bg-sand-50 py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -112,10 +160,10 @@
             </div>
             <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 @foreach ([
-                    ['images/services/live-presentiel.jpg', 'Live en présentiel — Studio de Lomé', 'Présentez vos produits dans notre studio professionnel : cadrage, son et lumière pris en charge par notre équipe technique.'],
-                    ['images/services/live-distance.jpg', 'Live à distance — Partout en Afrique', 'Participez depuis votre commerce ou votre domicile, où que vous soyez, avec l\'accompagnement de notre assistante basée à Lomé.'],
-                    ['images/services/production-contenus.jpg', 'Production de contenus promotionnels', 'Vidéo promotionnelle et publications pour prolonger la visibilité de votre passage à l\'antenne.'],
-                    ['images/services/accompagnement-commercial.jpg', 'Accompagnement commercial & relais', 'Suivi personnalisé et relais sur les réseaux pour transformer votre passage en opportunités durables.'],
+                    ['images/services/live-presentiel.webp', 'Live en présentiel — Studio de Lomé', 'Présentez vos produits dans notre studio professionnel : cadrage, son et lumière pris en charge par notre équipe technique.'],
+                    ['images/services/live-distance-local.webp', 'Live à distance — Partout en Afrique', 'Participez depuis votre commerce ou votre domicile, où que vous soyez, avec l\'accompagnement de notre assistante basée à Lomé.'],
+                    ['images/services/production-contenus.webp', 'Production de contenus promotionnels', 'Vidéo promotionnelle et publications pour prolonger la visibilité de votre passage à l\'antenne.'],
+                    ['images/services/accompagnement-commercial.webp', 'Accompagnement commercial & relais', 'Suivi personnalisé et relais sur les réseaux pour transformer votre passage en opportunités durables.'],
                 ] as [$src, $title, $text])
                     <div class="reveal card p-3 transition hover:-translate-y-1 hover:shadow-lg">
                         <x-photo :src="$src" :alt="$title" ratio="aspect-[4/3]" />
@@ -236,13 +284,13 @@
             </div>
             <div class="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                 @foreach ([
-                    ['images/galerie/01-presentateur-camera.jpg', 'Présentateur OCD Live au micro, studio de Lomé'],
-                    ['images/galerie/02-entrepreneuse-produits.jpg', 'Entrepreneuse préparant ses produits avant son passage'],
-                    ['images/galerie/03-commercant-live.jpg', 'Commerçant en direct devant la caméra'],
-                    ['images/galerie/04-equipe-production.jpg', 'Équipe de production en régie'],
-                    ['images/galerie/05-entrepreneur-smartphone.jpg', 'Participation à distance depuis un smartphone'],
-                    ['images/galerie/06-studio-equipement.jpg', 'Notre studio équipé : lumière, son, caméras'],
-                    ['images/galerie/07-multi-entrepreneurs.jpg', 'Entrepreneurs réunis lors d\'une émission OCD Live'],
+                    ['images/galerie/01-presentateur-camera.webp', 'Présentateur OCD Live au micro, studio de Lomé'],
+                    ['images/galerie/02-entrepreneuse-produits-local.webp', 'Entrepreneuse préparant ses produits dans sa boutique'],
+                    ['images/galerie/03-commercant-live.webp', 'Commerçant en direct devant la caméra'],
+                    ['images/galerie/04-equipe-production.webp', 'Équipe de production en régie'],
+                    ['images/galerie/05-entrepreneur-smartphone-local.webp', 'Participation à distance depuis un atelier de création'],
+                    ['images/galerie/06-studio-equipement.webp', 'Notre studio équipé : lumière, son, caméras'],
+                    ['images/galerie/07-multi-entrepreneurs.webp', 'Entrepreneurs réunis lors d\'une émission OCD Live'],
                 ] as [$src, $caption])
                     <x-photo :src="$src" :alt="$caption" ratio="aspect-square" class="reveal" />
                 @endforeach

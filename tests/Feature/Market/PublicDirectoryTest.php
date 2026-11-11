@@ -84,4 +84,30 @@ class PublicDirectoryTest extends TestCase
 
         $this->get(route('market.index'))->assertOk()->assertSee('target="_blank"', false);
     }
+
+    public function test_homepage_previews_six_current_lives_and_hides_unpublished_requests(): void
+    {
+        for ($i = 0; $i < 8; $i++) {
+            $this->createApprovedSubmission(['seller_business_name' => 'Commerce accueil '.$i]);
+        }
+        $this->createSubmission(['seller_business_name' => 'Commerce privé']);
+        $this->createApprovedSubmission([
+            'seller_business_name' => 'Commerce expiré',
+            'expires_at' => now()->subMinute(),
+        ]);
+
+        $this->get(route('home'))->assertOk()
+            ->assertViewHas('marketLives', fn ($lives) => $lives->count() === 6)
+            ->assertSee('Commerce accueil 7')->assertDontSee('Commerce accueil 0')
+            ->assertDontSee('Commerce privé')->assertDontSee('Commerce expiré')
+            ->assertSee('Explorer le Market')->assertSee('Proposer mon live');
+    }
+
+    public function test_homepage_still_presents_the_market_when_no_live_is_available(): void
+    {
+        $this->get(route('home'))->assertOk()
+            ->assertSee('Les prochains lives arrivent bientôt.')
+            ->assertSee('href="'.route('market.index').'"', false)
+            ->assertSee('href="'.route('market.submit').'"', false);
+    }
 }

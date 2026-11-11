@@ -70,12 +70,16 @@ class SellerSubmissionService
             ->first();
 
         if ($existing) {
-            $existing->update(collect($input)->only(['full_name', 'business_name', 'city_id', 'description', 'consents'])->all());
+            $update = collect($input)->only(['full_name', 'business_name', 'city_id', 'description', 'consents']);
+            if (blank($input['full_name'] ?? null)) {
+                $update = $update->except('full_name');
+            }
+            $existing->update($update->all());
 
             return $existing;
         }
 
-        return Seller::create($input);
+        return Seller::create([...$input, 'full_name' => ($input['full_name'] ?? null) ?: $input['business_name']]);
     }
 
     /** Empêche la soumission répétée d'une demande active pour le même compte TikTok. */

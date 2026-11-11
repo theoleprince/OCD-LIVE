@@ -1,5 +1,24 @@
 # OCD LIVE
 
+### Démonstration OCD LIVE MARKET en local
+
+`php artisan db:seed --class=MarketDemoSeeder` crée 24 commerces fictifs dans six pays,
+quatre secteurs, quatre publications par jour sur les deux derniers mois, 24 exemples
+actifs et huit demandes à modérer. Les 24 exemples actifs restent visibles pendant deux mois ;
+relancer le seeder prolonge cette période sans doublon. Les vrais lives conservent le délai
+Market configuré (90 minutes par défaut).
+Les exemples sont marqués `[DÉMO]` et leur bouton « Suivre le live » ouvre la page LIVE
+de TikTok ; les vraies publications ouvrent le lien fourni par le vendeur. Aucune notification n'est envoyée. Le seeder est limité aux
+environnements `local` et `testing`. Pour afficher ces exemples sur la version hébergée,
+activer explicitement `SEED_MARKET_DEMO=true` : ils sont alors ajoutés par `db:seed` au
+déploiement, sans créer les réservations de démonstration. `SEED_DEMO=true` reste disponible
+pour une démonstration locale complète.
+Les images illustratives sont servies depuis `public/images/market/demo` pour rester
+disponibles au déploiement. Les vrais uploads utilisent le disque public et nécessitent
+`php artisan storage:link`.
+Les commerçants Market diffusent depuis leurs propres lieux ; le décor OCD Live est
+réservé aux photographies du studio.
+
 > **Votre produit mérite d'être vu.**
 > Plateforme panafricaine de présentation commerciale en direct — OCD (Les Opportunités C'est Dehors) · Émissions diffusées sur le compte TikTok House of Challenge · Studio de Lomé, Togo.
 > Lancement commercial : 1er décembre 2026.
@@ -40,6 +59,9 @@ Langue de l'application : français. Fuseau horaire de référence : `Africa/Lom
 ## 2. Fonctionnalités
 
 ### Site public
+- Formulaire de contact : e-mail et message ; nom et téléphone facultatifs, repliés.
+- Soumission Market : quatre petits écrans, deux champs à la fois, puis activité et accord de publication.
+  Le compte TikTok est extrait du lien habituel ; nom personnel, créneau, photos et détails restent facultatifs.
 - Landing page : hero, deux cartes **Présentiel – Lomé** / **À distance – Afrique et international**, concept,
   « Comment ça marche ? », six packages (lus en base), « Pourquoi OCD Live ? », FAQ, contact, pied de page.
 - Pages *Conditions générales* et *Politique de confidentialité* (à faire valider juridiquement).
@@ -53,11 +75,12 @@ Langue de l'application : français. Fuseau horaire de référence : `Africa/Lom
 4. **Horaire** : créneaux calculés selon la durée du package, les horaires d'ouverture, la marge de préparation
    entre deux émissions, les blocages et le délai minimum de prévenance. Pour un client à distance, l'heure
    locale du participant est affichée.
-5. **Informations personnelles** : nom, prénom, pays, ville, téléphone, WhatsApp, e-mail ; pour la distance :
-   fuseau horaire, type de connexion, besoin d'assistance.
-6. **Informations commerciales** : business, secteur, description, nature de l'offre, téléphone et adresse
-   commerciaux, réseaux sociaux, logo, photos, nombre de produits, produits et quantités ;
-   questions spécifiques (préparation, conservation, présentation) pour l'alimentaire.
+5. **Informations personnelles** : nom, prénom, pays, ville, un seul téléphone et e-mail.
+   WhatsApp reprend ce numéro sauf précision contraire ; l'heure locale est déduite du pays.
+   Les réglages de connexion sont facultatifs et repliés.
+6. **Informations commerciales** : nom de l'activité, secteur et présentation.
+   Les coordonnées supplémentaires, photos, réseaux sociaux et listes de produits sont facultatifs
+   et repliés. Les questions alimentaires utiles à la préparation restent visibles selon le secteur.
 7. **Récapitulatif** + acceptation des CGV.
 8. **Paiement** : la réservation est créée au statut `PENDING_PAYMENT` avec un paiement `PENDING`.
    Les instructions de règlement sont affichées. **Aucun paiement n'est simulé.**

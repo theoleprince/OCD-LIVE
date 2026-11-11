@@ -105,7 +105,7 @@ class BookingCreationTest extends TestCase
             ->call('selectTime', '10:00')
             ->set('email', 'pas-un-email')
             ->call('next')
-            ->assertHasErrors(['lastName', 'firstName', 'city', 'phone', 'whatsapp', 'email'])
+            ->assertHasErrors(['lastName', 'firstName', 'city', 'phone', 'email'])
             ->assertSet('step', 5);
     }
 
@@ -116,6 +116,27 @@ class BookingCreationTest extends TestCase
             ->set('sector', 'Alimentation & restauration')
             ->call('next')
             ->assertHasErrors(['foodPreparation', 'foodConservation']);
+    }
+
+    public function test_booking_can_be_sent_without_duplicate_contacts_or_extra_business_details(): void
+    {
+        Livewire::test(BookingWizard::class)
+            ->call('selectMode', 'REMOTE')->call('selectPackage', $this->starter()->id)
+            ->call('selectDate', '2026-12-01')->call('selectTime', '10:00')
+            ->set('lastName', 'Koffi')->set('firstName', 'Ama')
+            ->set('country', 'Togo')->set('city', 'Lomé')
+            ->set('phone', '+22890000001')->set('email', 'ama@example.com')
+            ->call('next')->assertHasNoErrors()->assertSet('step', 6)
+            ->set('businessName', 'Boutique Ama')->set('sector', 'Mode & textile')
+            ->set('description', 'Vente de robes et de tissus dans ma boutique à Lomé.')
+            ->call('next')->assertHasNoErrors()->assertSet('step', 7)
+            ->set('acceptTerms', true)->call('submit')->assertHasNoErrors()->assertSet('step', 8);
+
+        $booking = Booking::with(['customer', 'business'])->sole();
+        $this->assertSame('+22890000001', $booking->customer->whatsapp);
+        $this->assertSame('+22890000001', $booking->business->business_phone);
+        $this->assertSame($booking->business->description, $booking->business->offer_nature);
+        $this->assertNull($booking->connection_type);
     }
 
     public function test_unavailable_date_cannot_be_selected(): void

@@ -10,6 +10,7 @@ use App\Models\LiveSchedule;
 use App\Services\SellerSubmissionService;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -50,6 +51,36 @@ class LiveSubmissionForm extends Component
     public bool $submitted = false;
     public ?string $reference = null;
     public ?string $trackingUrl = null;
+    public int $step = 1;
+    public bool $acceptAll = false;
+
+    public function updatedAcceptAll(bool $value): void
+    {
+        $this->acceptTerms = $this->authorizePublication = $this->confirmOwnership = $value;
+    }
+
+    public function next(): void
+    {
+        $this->validate($this->stepRules($this->step), [], $this->attributeNames());
+        $this->step = min(4, $this->step + 1);
+    }
+
+    public function back(): void
+    {
+        $this->step = max(1, $this->step - 1);
+    }
+
+    private function stepRules(int $step): array
+    {
+        $fields = match ($step) {
+            1 => ['liveUrl', 'productDescription'],
+            2 => ['businessName', 'phone'],
+            3 => ['countryId', 'cityId'],
+            default => ['categoryId'],
+        };
+
+        return array_intersect_key($this->rules(), array_flip($fields));
+    }
 
     public function updatedCountryId(): void
     {
@@ -74,7 +105,24 @@ class LiveSubmissionForm extends Component
             return;
         }
 
-        $this->validate($this->rules(), [], $this->attributeNames());
+        if ($this->acceptAll) {
+            $this->acceptTerms = $this->authorizePublication = $this->confirmOwnership = true;
+        }
+        if (preg_match('~^/@([a-zA-Z0-9._]+)(?:/|$)~', parse_url(trim($this->liveUrl), PHP_URL_PATH) ?? '', $account)) {
+            $this->accountName = '@'.$account[1];
+        }
+        try {
+            $this->validate($this->rules(), [], $this->attributeNames());
+        } catch (ValidationException $e) {
+            $this->step = 4;
+            foreach ([1, 2, 3] as $step) {
+                if (array_intersect_key($e->errors(), $this->stepRules($step))) {
+                    $this->step = $step;
+                    break;
+                }
+            }
+            throw $e;
+        }
         RateLimiter::hit($key, 1800);
 
         try {
@@ -97,7 +145,7 @@ class LiveSubmissionForm extends Component
     {
         return [
             'seller' => [
-                'full_name' => trim($this->fullName),
+                'full_name' => trim($this->fullName) ?: null,
                 'business_name' => trim($this->businessName),
                 'phone' => trim($this->phone),
                 'country_id' => $this->countryId,
@@ -133,7 +181,7 @@ class LiveSubmissionForm extends Component
         $image = ['nullable', 'image', 'mimes:'.implode(',', config('ocd.uploads.mimes')), 'max:'.config('ocd.uploads.max_kb')];
 
         return [
-            'fullName' => ['required', 'string', 'max:150'],
+            'fullName' => ['nullable', 'string', 'max:150'],
             'businessName' => ['required', 'string', 'max:150'],
             'phone' => $phone,
             'countryId' => ['required', 'integer', Rule::exists('countries', 'id')->where('is_active', true)],
@@ -144,7 +192,7 @@ class LiveSubmissionForm extends Component
             'productDescription' => ['required', 'string', 'min:10', 'max:2000'],
             'accountName' => ['required', 'string', 'max:100'],
             'liveUrl' => ['required', 'string', 'max:255', 'regex:/^https?:\/\/(www\.|vm\.|vt\.|m\.)?tiktok\.com\/.+/i'],
-            'scheduleId' => ['required', 'integer', Rule::exists('live_schedules', 'id')->where('is_active', true)],
+            'scheduleId' => ['nullable', 'integer', Rule::exists('live_schedules', 'id')->where('is_active', true)],
             'profileImage' => $image,
             'logoImage' => $image,
             'acceptTerms' => ['accepted'],

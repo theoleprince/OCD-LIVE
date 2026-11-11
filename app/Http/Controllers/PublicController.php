@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\LiveSubmission;
 use App\Models\Package;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -13,6 +14,12 @@ class PublicController extends Controller
     {
         return view('public.home', [
             'packages' => Package::active()->ordered()->get(),
+            'marketLives' => LiveSubmission::published()
+                ->with(['seller', 'country', 'city', 'category'])
+                ->orderByDesc('published_at')->orderByDesc('id')->limit(6)->get(),
+            'marketCountries' => Country::active()->ordered()
+                ->whereHas('submissions', fn ($query) => $query->published())
+                ->limit(6)->get(),
         ]);
     }
 

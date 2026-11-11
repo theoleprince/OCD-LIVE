@@ -301,7 +301,7 @@ class BookingWizard extends Component
                 'last_name' => trim($this->lastName),
                 'email' => trim($this->email),
                 'phone' => trim($this->phone),
-                'whatsapp' => trim($this->whatsapp),
+                'whatsapp' => trim($this->whatsapp) ?: trim($this->phone),
                 'country' => $this->country,
                 'city' => trim($this->city),
                 'timezone' => $this->timezone,
@@ -316,8 +316,8 @@ class BookingWizard extends Component
                 'name' => trim($this->businessName),
                 'sector' => $this->sector,
                 'description' => trim($this->description),
-                'offer_nature' => trim($this->offerNature),
-                'business_phone' => trim($this->businessPhone),
+                'offer_nature' => trim($this->offerNature) ?: trim($this->description),
+                'business_phone' => trim($this->businessPhone) ?: trim($this->phone),
                 'business_address' => trim($this->businessAddress),
                 'social_links' => array_map('trim', $this->socials),
                 'products_count' => $this->productsCount,
@@ -335,7 +335,6 @@ class BookingWizard extends Component
     {
         $phone = ['required', 'string', 'max:30', 'regex:/^\+?[0-9 ().\-]{6,25}$/'];
         $image = ['image', 'mimes:'.implode(',', config('ocd.uploads.mimes')), 'max:'.config('ocd.uploads.max_kb')];
-        $remote = $this->mode === ParticipationMode::Remote->value;
 
         return match ($step) {
             1 => ['mode' => ['required', Rule::enum(ParticipationMode::class)]],
@@ -348,10 +347,10 @@ class BookingWizard extends Component
                 'country' => ['required', Rule::in(array_keys(config('ocd.countries')))],
                 'city' => ['required', 'string', 'max:100'],
                 'phone' => $phone,
-                'whatsapp' => $phone,
+                'whatsapp' => ['nullable', ...array_slice($phone, 1)],
                 'email' => ['required', 'email:rfc', 'max:190'],
                 'timezone' => ['required', 'timezone:all'],
-                'connectionType' => [$remote ? 'required' : 'nullable', Rule::in(array_keys(config('ocd.connection_types')))],
+                'connectionType' => ['nullable', Rule::in(array_keys(config('ocd.connection_types')))],
                 'needsAssistance' => ['boolean'],
                 'assistanceNotes' => ['nullable', 'string', 'max:1000'],
             ],
@@ -359,9 +358,9 @@ class BookingWizard extends Component
                 'businessName' => ['required', 'string', 'max:150'],
                 'sector' => ['required', Rule::in(config('ocd.sectors'))],
                 'description' => ['required', 'string', 'min:20', 'max:2000'],
-                'offerNature' => ['required', 'string', 'max:1000'],
-                'businessPhone' => $phone,
-                'businessAddress' => ['required', 'string', 'max:255'],
+                'offerNature' => ['nullable', 'string', 'max:1000'],
+                'businessPhone' => ['nullable', ...array_slice($phone, 1)],
+                'businessAddress' => ['nullable', 'string', 'max:255'],
                 'socials.*' => ['nullable', 'string', 'max:255'],
                 'logo' => ['nullable', ...$image],
                 'photos' => ['array', 'max:'.config('ocd.uploads.max_product_photos')],

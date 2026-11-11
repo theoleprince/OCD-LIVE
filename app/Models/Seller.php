@@ -48,4 +48,16 @@ class Seller extends Model
     {
         return 'public_slug';
     }
+
+    public function getProfileImageUrlAttribute(): ?string
+    {
+        if (! $this->profile_image) {
+            return null;
+        }
+
+        // Les illustrations de démonstration sont livrées avec le site, hors du volume d'uploads.
+        return str_starts_with($this->profile_image, 'market/demo/')
+            ? asset('images/'.$this->profile_image)
+            : asset('storage/'.$this->profile_image);
+    }
 }
